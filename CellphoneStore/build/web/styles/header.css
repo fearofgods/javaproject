@@ -3,52 +3,108 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-.navbar{
-    height: 80px;
-    /* margin-bottom: 30px; */
+.header{
+    margin-bottom: 2rem;
 }
 
-.navbar-brand{
-    color: white !important;
-}
-
-.nav-link{
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-}
-
-.box-search{
+.header .header-child-1{
+    background-color: #343A40;
+    overflow: hidden;
     display: flex;
-    background-color: #ffffff;
-    border-radius: 20px;
-    width: 250px;
-    height: 35px;
     align-items: center;
+    padding: 1rem 8%;
+    justify-content: space-between;
+    color: #fff;
+    height: 4.5rem;
 }
 
-.box-icon{
-    padding-left: 10px;
-    padding-top: 6px;
-    pointer-events: none;
+.logo{
+    display: flex;
     justify-content: center;
+    /* overflow: hidden; */
+    height: 2rem;
 }
 
-.input-search input{
-    width: 200px;
+.brand-name>p{
+    padding-left: 10px;
+    /* align-items: center; */
+    line-height: 2rem;
+}
+
+.search-form{
+    background:#fff;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 1rem;
+    width: 30rem;
+    height: 2rem;
+    color: black;
+}
+
+.search-form>input{
     border: none;
+    height: 2rem;
+    text-transform: none;
+    width: 27rem;
 }
 
-.input-search input:focus{
+.search-form>input:focus{
     outline: none;
 }
 
-.second-nav{
-    height: 30px;
+.icons{
+    display: flex;
 }
 
-.child-second-nav>a{
-    margin-left: 50px;
+.shoping-cart{
+    margin-right: 0.3rem;
+}
+
+.shoping-cart,.users{
+    border-radius: 1rem;
+    width: 8rem;
+    text-align: center;
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.shoping-cart:hover, .users:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+
+}
+
+.users>a, .shoping-cart>a{
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+
+}
+
+.header-child-2{
+    background-color: #fed100;
+    text-align: center;
+}
+
+.navbar{
+    height: 3rem;
+}
+
+.nav-component{
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+}
+
+.nav-component:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.nav-link{
+    color: black;
+}
+
+.nav-link:hover{
+    color: black;
 }
 
 .material-icons {

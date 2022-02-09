@@ -15,6 +15,7 @@ body{
     padding: 1rem 8%;
     justify-content: space-between;
     color: #fff;
+    height: 4.5rem;
 }
 
 .logo{
@@ -86,14 +87,24 @@ body{
 }
 
 .navbar{
-    display: inline-block;
-    
+    height: 3rem;
 }
 
-.navbar a{
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    text-decoration: none;
+.nav-component{
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+}
+
+.nav-component:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.nav-link{
+    color: black;
+}
+
+.nav-link:hover{
+    color: black;
 }
 
 .material-icons {

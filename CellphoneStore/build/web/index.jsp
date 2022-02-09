@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -52,146 +53,235 @@ and open the template in the editor.
 
         <!-- Info -->
         <div class="container">
-            <div class="default-list">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-12 block-header">
-                        <h1>Điện thoại nổi bật nhất</h1>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i" alt="iphone13 pro max"></a>
-                                
+
+        <div class="banner col-md-12 col-12 col-sm-12">
+
+        </div>
+
+        <div class="top-list col-md-12 col-12 col-sm-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 block-header">
+                    <h1>Top bán chạy</h1>
+                </div>
+
+                <div class="owl-carousel col-md-12 col-sm-12">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="item-top">
+                            <div class="item-top-img">
+                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive"
+                                        alt=""></a>
                             </div>
-                            <div class="item-price">
-                                <h3>Iphone 13 pro max 128gb</h3>
+                            <div class="item-top-title">
+                                <h2>Iphone 13 pro max 128gb</h2>
                                 <p>34.190.000đ</p>
-                            </div>
-                            <div class="my-btn">
-                                <button id="btn-1">Thêm vào giỏ</button>
-                                <button id="btn-2">Mua ngay</button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i" alt="iphone13 pro max"></a>
-                                
+
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="item-top">
+                            <div class="item-top-img">
+                                <a href="#"><img src="img/items/apple-iphone-13-pro.jpg" class="img-responsive"
+                                        alt=""></a>
                             </div>
-                            <div class="item-price">
-                                <h3>Iphone 13 pro max 128gb</h3>
+                            <div class="item-top-title">
+                                <h2>Iphone 13 pro max 128gb</h2>
                                 <p>34.190.000đ</p>
-                            </div>
-                            <div class="my-btn">
-                                <button id="btn-1">Thêm vào giỏ</button>
-                                <button id="btn-2">Mua ngay</button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i" alt="iphone13 pro max"></a>
-                                
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="item-top">
+                            <div class="item-top-img">
+                                <a href="#"><img src="img/items/samsung-galaxy-z-fold3-5g.jpg" class="img-responsive"
+                                        alt=""></a>
                             </div>
-                            <div class="item-price">
-                                <h3>Iphone 13 pro max 128gb</h3>
+                            <div class="item-top-title">
+                                <h2>Iphone 13 pro max 128gb</h2>
                                 <p>34.190.000đ</p>
-                            </div>
-                            <div class="my-btn">
-                                <button id="btn-1">Thêm vào giỏ</button>
-                                <button id="btn-2">Mua ngay</button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i" alt="iphone13 pro max"></a>
-                                
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="item-top">
+                            <div class="item-top-img">
+                                <a href="#"><img src="img/items/sony-xperia-pro-i.jpg" class="img-responsive"
+                                        alt=""></a>
                             </div>
-                            <div class="item-price">
-                                <h3>Iphone 13 pro max 128gb</h3>
+                            <div class="item-top-title">
+                                <h2>Iphone 13 pro max 128gb</h2>
                                 <p>34.190.000đ</p>
-                            </div>
-                            <div class="my-btn">
-                                <button id="btn-1">Thêm vào giỏ</button>
-                                <button id="btn-2">Mua ngay</button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i" alt="iphone13 pro max"></a>
-                                
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="item-top">
+                            <div class="item-top-img">
+                                <a href="#"><img src="img/items/xiaomi-redmi-note-11-pro-global.jpg"
+                                        class="img-responsive" alt=""></a>
                             </div>
-                            <div class="item-price">
-                                <h3>Iphone 13 pro max 128gb</h3>
+                            <div class="item-top-title">
+                                <h2>Iphone 13 pro max 128gb</h2>
                                 <p>34.190.000đ</p>
-                            </div>
-                            <div class="my-btn">
-                                <button id="btn-1">Thêm vào giỏ</button>
-                                <button id="btn-2">Mua ngay</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i" alt="iphone13 pro max"></a>
-                                
-                            </div>
-                            <div class="item-price">
-                                <h3>Iphone 13 pro max 128gb</h3>
-                                <p>34.190.000đ</p>
-                            </div>
-                            <div class="my-btn">
-                                <button id="btn-1">Thêm vào giỏ</button>
-                                <button id="btn-2">Mua ngay</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i" alt="iphone13 pro max"></a>
-                                
-                            </div>
-                            <div class="item-price">
-                                <h3>Iphone 13 pro max 128gb</h3>
-                                <p>34.190.000đ</p>
-                            </div>
-                            <div class="my-btn">
-                                <button id="btn-1">Thêm vào giỏ</button>
-                                <button id="btn-2">Mua ngay</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="item-wrapper">
-                            <div class="item-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i" alt="iphone13 pro max"></a>
-                                
-                            </div>
-                            <div class="item-price">
-                                <h3>Iphone 13 pro max 128gb</h3>
-                                <p>34.190.000đ</p>
-                            </div>
-                            <div class="my-btn">
-                                <button id="btn-1">Thêm vào giỏ</button>
-                                <button id="btn-2">Mua ngay</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
         </div>
+
+        <div class="banner col-md-12 col-12 col-sm-12">
+            <h2>ADS</h2>
+        </div>
+
+        <div class="default-list col-md-12 col-12 col-sm-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 block-header">
+                    <h1>Điện thoại nổi bật nhất</h1>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
+                                    alt="iphone13 pro max"></a>
+
+                        </div>
+                        <div class="item-price">
+                            <h3>Iphone 13 pro max 128gb</h3>
+                            <p>34.190.000đ</p>
+                        </div>
+                        <div class="my-btn">
+                            <button id="btn-1">Thêm vào giỏ</button>
+                            <button id="btn-2">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
+                                    alt="iphone13 pro max"></a>
+
+                        </div>
+                        <div class="item-price">
+                            <h3>Iphone 13 pro max 128gb</h3>
+                            <p>34.190.000đ</p>
+                        </div>
+                        <div class="my-btn">
+                            <button id="btn-1">Thêm vào giỏ</button>
+                            <button id="btn-2">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
+                                    alt="iphone13 pro max"></a>
+
+                        </div>
+                        <div class="item-price">
+                            <h3>Iphone 13 pro max 128gb</h3>
+                            <p>34.190.000đ</p>
+                        </div>
+                        <div class="my-btn">
+                            <button id="btn-1">Thêm vào giỏ</button>
+                            <button id="btn-2">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
+                                    alt="iphone13 pro max"></a>
+
+                        </div>
+                        <div class="item-price">
+                            <h3>Iphone 13 pro max 128gb</h3>
+                            <p>34.190.000đ</p>
+                        </div>
+                        <div class="my-btn">
+                            <button id="btn-1">Thêm vào giỏ</button>
+                            <button id="btn-2">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
+                                    alt="iphone13 pro max"></a>
+
+                        </div>
+                        <div class="item-price">
+                            <h3>Iphone 13 pro max 128gb</h3>
+                            <p>34.190.000đ</p>
+                        </div>
+                        <div class="my-btn">
+                            <button id="btn-1">Thêm vào giỏ</button>
+                            <button id="btn-2">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
+                                    alt="iphone13 pro max"></a>
+
+                        </div>
+                        <div class="item-price">
+                            <h3>Iphone 13 pro max 128gb</h3>
+                            <p>34.190.000đ</p>
+                        </div>
+                        <div class="my-btn">
+                            <button id="btn-1">Thêm vào giỏ</button>
+                            <button id="btn-2">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
+                                    alt="iphone13 pro max"></a>
+
+                        </div>
+                        <div class="item-price">
+                            <h3>Iphone 13 pro max 128gb</h3>
+                            <p>34.190.000đ</p>
+                        </div>
+                        <div class="my-btn">
+                            <button id="btn-1">Thêm vào giỏ</button>
+                            <button id="btn-2">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
+                                    alt="iphone13 pro max"></a>
+
+                        </div>
+                        <div class="item-price">
+                            <h3>Iphone 13 pro max 128gb</h3>
+                            <p>34.190.000đ</p>
+                        </div>
+                        <div class="my-btn">
+                            <button id="btn-1">Thêm vào giỏ</button>
+                            <button id="btn-2">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         <!-- Footer -->
         <jsp:include page="footer.jsp"/>
         <jsp:include page="common/script.jsp"/>
+        <script src="js/index.js"></script>
     </body>
     
 </html>

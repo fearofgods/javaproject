@@ -5,51 +5,61 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark rounded">
-    <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp"><img src="img/logo/store.svg" width="30" height="30" alt="logo" style="cursor: pointer;">&nbsp;Cellphone Store</a>
-    
-    <ul class="navbar-nav mr-auto">
-        <form class="form-inline">
-            <input class="form-control mr-sm-1 search-box" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm</button>
-        </form>
-    </ul>
-
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a href="" class="nav-link"><span class="material-icons">shopping_cart</span>Giỏ hàng</a>
-        </li>
-        <li class="nav-item">
-            <a href="<%=request.getContextPath()%>/login" class="nav-link">Đăng nhập/Đăng kí</a>
-        </li>
-     </ul>
-</nav>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-warning second-nav">
-    <div class="collapse navbar-collapse justify-content-center second-nav" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown child-second-nav">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-            Danh mục sản phẩm
-            </a>
-            <div class="dropdown-menu">
-               <a class="dropdown-item" href="#">Javascript</a>
-               <a class="dropdown-item" href="#">Css</a>
-               <a class="dropdown-item" href="#">Bootstrap</a>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<header class="header">
+        <div class="header-child-1">
+            <div class="logo">
+                <a href="<%=request.getContextPath()%>/"><img src="img/logo/store.svg" width="30" height="30" alt=""></a>
+                <div class="brand-name">
+                    <p>Cellphone Store</p>
+                </div>
             </div>
-         </li>
-        <li class="nav-item child-second-nav">
-            <a href="" class="nav-link"><span class="material-icons">done</span> Sản phẩm đã xem</a>
-        </li>
-        <li class="nav-item child-second-nav">
-          <a class="nav-link" href="#">Tư vấn bán hàng</a>
-        </li>
-        <li class="nav-item child-second-nav">
-          <a class="nav-link" href="#">Chính sách bảo hành</a>
-        </li>
-        <li class="nav-item child-second-nav">
-          <a class="nav-link" href="#">Miễn phí vận chuyển</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+
+
+            <form action="" class="search-form">
+                <input type="search" name="" placeholder="Bạn muốn tìm gì?" id="search-box">
+                <label for="search-box" class="fas fa-search"></label>
+            </form>
+
+            <div class="icons">
+                <div class="shoping-cart">
+                    <div class="fas fa-shopping-cart"></div>
+                    <a href="">Giỏ hàng</a>
+                </div>
+                <div class="users">
+                    <div class="fas fa-user"></div>
+                    <a href="<%=request.getContextPath()%>/login">Đăng nhập</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="header-child-2">
+            <nav class="navbar navbar-expand-md">
+                <div class="container">
+                    <button class="navbar-toggler d-none" data-toggle="collapse" data-target="#navcol-1"><span
+                            class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="nav navbar-nav w-100 justify-content-between">
+                            <li class="nav-component dropdown ">
+                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Danh mục sản phẩm</a>
+                                <div class="dropdown-menu" role="menu">
+                                    <c:forEach items="${category}" var="o">
+                                        <a class="dropdown-item" role="presentation"href="#">${o.cname}</a>
+                                    </c:forEach>
+                                </div>
+                            </li>
+                            <li class="nav-component dropdown">
+                                <a class="nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Chính sách bảo hành</a>
+                            </li>
+                            <li class="nav-component dropdown">
+                                <a class="nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Miễn phí giao hàng</a>
+                            </li>
+                            <li class="nav-component dropdown">
+                                <a class="nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Đổi trả trong 15 ngày</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav> 
+        </div>
+    </header>
