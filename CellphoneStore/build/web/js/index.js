@@ -1,36 +1,36 @@
-$(document).ready(function(){
-    $(".owl-carousel").owlCarousel();
+$(document).ready(function () {
+  $(".owl-carousel").owlCarousel();
 });
 
 $(".owl-carousel").owlCarousel({
-    autoplay: true,
-    autoplayhoverpause: true,
-    autoplaytimeout: 100,
-    items: 4,
-    nav: true,
-    loop: true,
-    margin: 5,
-    responsive:{
-        0 : {
-            items: 1,
-            dots: false
-        },
-        600 :{
-            items: 2,
-            dots: false
-        },
-        1000 :{
-            items: 4,
-            dots: false
-        }
+  autoplay: true,
+  autoplayhoverpause: true,
+  autoplaytimeout: 100,
+  items: 4,
+  nav: true,
+  loop: true,
+  margin: 5,
+  responsive: {
+    0: {
+      items: 1,
+      dots: false
+    },
+    600: {
+      items: 2,
+      dots: false
+    },
+    1000: {
+      items: 4,
+      dots: false
     }
+  }
 })
 
 var $maxWidthElement = $('.navbar'),
   maxWidth = $maxWidthElement.width();
 
 function positionDropdowns() {
-  $('.dropdown-menu').each(function() {
+  $('.dropdown-menu').each(function () {
     $(this).removeClass('dropdown-menu-right');
     var $navItem = $(this).closest('.dropdown'),
       dropdownWidth = $(this).outerWidth(),
@@ -64,7 +64,7 @@ function positionDropdowns() {
   });
 }
 
-$("#trigger-btn").on("click", function() {
+$("#trigger-btn").on("click", function () {
   positionDropdowns();
   $(this)
     .text("Done!")
@@ -74,10 +74,25 @@ $("#trigger-btn").on("click", function() {
 
 var resizeTimer;
 
-$(window).on("resize", function(e) {
+$(window).on("resize", function (e) {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(function() {
+  resizeTimer = setTimeout(function () {
     maxWidth = $maxWidthElement.width();
     positionDropdowns();
   }, 250);
 });
+
+function loadTop4() {
+  var amount = document.getElementsByClassName("product").length;
+  $.ajax({
+      type: "post",
+      url: "/cellphone/loadtop4products",
+      data: {
+      exist: amount
+      },
+      success: function (response) {
+      var row = document.getElementById("newlist");
+      row.innerHTML += response;
+      }
+  });
+  }

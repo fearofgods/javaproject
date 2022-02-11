@@ -32,7 +32,7 @@ public class CategoryDAO{
                 list.add(new Category(rs.getInt(1), rs.getString(2)));
             }
         } catch (Exception e) {
-            System.out.println("Connect error!"+e);
+            System.out.println("Error!"+e);
         }
         return list;
     }

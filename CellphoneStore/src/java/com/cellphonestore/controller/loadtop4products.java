@@ -5,9 +5,10 @@
  */
 package com.cellphonestore.controller;
 
-import com.cellphonestore.dao.CategoryDAO;
-import com.cellphonestore.model.Category;
+import com.cellphonestore.dao.ProductDAO;
+import com.cellphonestore.model.Products;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hongd
  */
-@WebServlet(name = "headercontrol", urlPatterns = {"/header"})
-public class headercontrol extends HttpServlet {
+@WebServlet(name = "loadtop4products", urlPatterns = {"/loadtop4products"})
+public class loadtop4products extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +35,32 @@ public class headercontrol extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        com.cellphonestore.dao.CategoryDAO dao = new CategoryDAO();
-        List<Category> list = dao.getAll();
-        request.setAttribute("category", list);
-        request.getRequestDispatcher("header.jsp").forward(request, response);
+        com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
+        String amount_raw = request.getParameter("exist");
+        int amount = Integer.parseInt(amount_raw);
+        List<Products> list = dao.getTop4(amount);
+        
+        PrintWriter out = response.getWriter();
+        for (Products products : list) {
+            out.println("<div class=\"col-lg-3 col-md-4 col-sm-6 product\">\n" +
+"                    <div class=\"item-wrapper\">\n" +
+"                        <div class=\"item-img\">\n" +
+"                            <a href=\"#\"><img src=\""+products.getImage()+"\" class=\"img-responsive img-i\"\n" +
+"                                    alt=\""+products.getName()+"\"></a>\n" +
+"\n" +
+"                        </div>\n" +
+"                        <div class=\"item-price\">\n" +
+"                            <h3>"+products.getName()+"</h3>\n" +
+"                            <p>"+products.getPrice()+"đ</p>\n" +
+"                        </div>\n" +
+"                        <div class=\"my-btn\">\n" +
+"                            <button id=\"btn-1\">Thêm vào giỏ</button>\n" +
+"                            <button id=\"btn-2\">Mua ngay</button>\n" +
+"                        </div>\n" +
+"                    </div>\n" +
+"                </div>");
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

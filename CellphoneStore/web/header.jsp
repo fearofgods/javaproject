@@ -9,7 +9,7 @@
 <header class="header">
         <div class="header-child-1">
             <div class="logo">
-                <a href="<%=request.getContextPath()%>/"><img src="img/logo/store.svg" width="30" height="30" alt=""></a>
+                <a href="<%=request.getContextPath()%>/"><img src="img/logo/store.svg" width="30" height="30" alt="Logo"></a>
                 <div class="brand-name">
                     <p>Cellphone Store</p>
                 </div>
@@ -41,11 +41,9 @@
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav w-100 justify-content-between">
                             <li class="nav-component dropdown ">
-                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Danh mục sản phẩm</a>
-                                <div class="dropdown-menu" role="menu">
-                                    <c:forEach items="${category}" var="o">
-                                        <a class="dropdown-item" role="presentation"href="#">${o.cname}</a>
-                                    </c:forEach>
+                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" onclick="loadCategory()">Danh mục sản phẩm</a>
+                                <div class="dropdown-menu" id="catemenu" role="menu">
+                                    <!--load with ajax-->
                                 </div>
                             </li>
                             <li class="nav-component dropdown">

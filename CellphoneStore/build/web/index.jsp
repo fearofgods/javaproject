@@ -19,12 +19,10 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <jsp:include page="common/link.jsp"/>
         <link rel="stylesheet" href="styles/index.css">
-        <!-- <link rel="stylesheet" href="styles/header.css"> -->
     </head>
     <body>
         <!-- Navbar -->
-        <jsp:include page="header.jsp"/>
-
+        <jsp:include page="header.jsp" />
         <!-- <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 wrapper-slider">
@@ -135,143 +133,18 @@ and open the template in the editor.
         </div>
 
         <div class="default-list col-md-12 col-12 col-sm-12">
-            <div class="row">
+            <div class="row" id="newlist">
                 <div class="col-md-12 col-sm-12 block-header">
-                    <h1>Điện thoại nổi bật nhất</h1>
+                    <h1>Điện thoại mới nhất</h1>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
-                                    alt="iphone13 pro max"></a>
-
-                        </div>
-                        <div class="item-price">
-                            <h3>Iphone 13 pro max 128gb</h3>
-                            <p>34.190.000đ</p>
-                        </div>
-                        <div class="my-btn">
-                            <button id="btn-1">Thêm vào giỏ</button>
-                            <button id="btn-2">Mua ngay</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
-                                    alt="iphone13 pro max"></a>
-
-                        </div>
-                        <div class="item-price">
-                            <h3>Iphone 13 pro max 128gb</h3>
-                            <p>34.190.000đ</p>
-                        </div>
-                        <div class="my-btn">
-                            <button id="btn-1">Thêm vào giỏ</button>
-                            <button id="btn-2">Mua ngay</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
-                                    alt="iphone13 pro max"></a>
-
-                        </div>
-                        <div class="item-price">
-                            <h3>Iphone 13 pro max 128gb</h3>
-                            <p>34.190.000đ</p>
-                        </div>
-                        <div class="my-btn">
-                            <button id="btn-1">Thêm vào giỏ</button>
-                            <button id="btn-2">Mua ngay</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
-                                    alt="iphone13 pro max"></a>
-
-                        </div>
-                        <div class="item-price">
-                            <h3>Iphone 13 pro max 128gb</h3>
-                            <p>34.190.000đ</p>
-                        </div>
-                        <div class="my-btn">
-                            <button id="btn-1">Thêm vào giỏ</button>
-                            <button id="btn-2">Mua ngay</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
-                                    alt="iphone13 pro max"></a>
-
-                        </div>
-                        <div class="item-price">
-                            <h3>Iphone 13 pro max 128gb</h3>
-                            <p>34.190.000đ</p>
-                        </div>
-                        <div class="my-btn">
-                            <button id="btn-1">Thêm vào giỏ</button>
-                            <button id="btn-2">Mua ngay</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
-                                    alt="iphone13 pro max"></a>
-
-                        </div>
-                        <div class="item-price">
-                            <h3>Iphone 13 pro max 128gb</h3>
-                            <p>34.190.000đ</p>
-                        </div>
-                        <div class="my-btn">
-                            <button id="btn-1">Thêm vào giỏ</button>
-                            <button id="btn-2">Mua ngay</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
-                                    alt="iphone13 pro max"></a>
-
-                        </div>
-                        <div class="item-price">
-                            <h3>Iphone 13 pro max 128gb</h3>
-                            <p>34.190.000đ</p>
-                        </div>
-                        <div class="my-btn">
-                            <button id="btn-1">Thêm vào giỏ</button>
-                            <button id="btn-2">Mua ngay</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-wrapper">
-                        <div class="item-img">
-                            <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive img-i"
-                                    alt="iphone13 pro max"></a>
-
-                        </div>
-                        <div class="item-price">
-                            <h3>Iphone 13 pro max 128gb</h3>
-                            <p>34.190.000đ</p>
-                        </div>
-                        <div class="my-btn">
-                            <button id="btn-1">Thêm vào giỏ</button>
-                            <button id="btn-2">Mua ngay</button>
+                
+                
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="load-more">
+                        <div class="btn">
+                            <button onclick="loadTop4()">Xem thêm</button>
                         </div>
                     </div>
                 </div>
@@ -282,6 +155,22 @@ and open the template in the editor.
         <jsp:include page="footer.jsp"/>
         <jsp:include page="common/script.jsp"/>
         <script src="js/index.js"></script>
+        <script>
+            function loadTop4() {
+            var amount = document.getElementsByClassName("product").length;
+            $.ajax({
+                type: "post",
+                url: "/cellphone/loadtop4products",
+                data: {
+                exist: amount
+                },
+                success: function (response) {
+                var row = document.getElementById("newlist");
+                row.innerHTML += response;
+                }
+            });
+            }
+        </script>
     </body>
     
 </html>
