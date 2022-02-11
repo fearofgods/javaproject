@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hongd
  */
-@WebServlet(name = "loadtop4product", urlPatterns = {"/loadtop4product"})
-public class loadtop4products extends HttpServlet {
+@WebServlet(name = "loadtop4products", urlPatterns = {"/loadtop4products"})
+public class loadtop4productsoffset extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +33,20 @@ public class loadtop4products extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         //Load dao
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
+        //Get data from ajax method
+        String amount_raw = request.getParameter("exist");
+        int amount = Integer.parseInt(amount_raw);
         //Get list product
-        List<Products> list = dao.getTop4();
+        List<Products> list = dao.getTop4Offset(amount);
         //Init new function
         com.cellphonestore.function.Functions f = new Functions();
+        PrintWriter out = response.getWriter();
         for (Products products : list) {
             //Replace int price to currency format 
             String price = f.Currency(products.getPrice());
@@ -64,6 +68,7 @@ public class loadtop4products extends HttpServlet {
 "                    </div>\n" +
 "                </div>");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -29,7 +29,7 @@ public class ProductDAO {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {                
-                list.add(new Products(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6), rs.getInt(7)));
+                list.add(new Products(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getInt(7)));
             }
         } catch (Exception e) {
             System.out.println("Error:"+e);
@@ -37,7 +37,7 @@ public class ProductDAO {
         return list;
     }
     
-    public List<Products> getTop4(int amount){
+    public List<Products> getTop4Offset(int amount){
         List<Products> listTop4 = new ArrayList<>();
         String query = "Select * from Products order by pid offset ? rows fetch next 4 rows only";
         try {
@@ -46,7 +46,23 @@ public class ProductDAO {
             ps.setInt(1, amount);
             rs = ps.executeQuery();
             while (rs.next()) {                
-                listTop4.add(new Products(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getString(6), rs.getInt(7)));
+                listTop4.add(new Products(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getInt(7)));
+            }
+        } catch (Exception e) {
+            System.out.println("Error:"+e);
+        }
+        return listTop4;
+    }
+    
+    public List<Products> getTop4(){
+        List<Products> listTop4 = new ArrayList<>();
+        String query = "Select top 4 * from Products";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                listTop4.add(new Products(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getInt(7)));
             }
         } catch (Exception e) {
             System.out.println("Error:"+e);

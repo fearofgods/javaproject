@@ -52,7 +52,7 @@ and open the template in the editor.
         <!-- Info -->
         <div class="container">
 
-        <div class="banner col-md-12 col-12 col-sm-12">
+            <div class="banner col-md-12 col-12 col-sm-12">
 
         </div>
 
@@ -71,7 +71,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
+                                <p>34.190.000&nbsp;₫</p>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
+                                <p>34.190.000&nbsp;₫</p>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
+                                <p>34.190.000&nbsp;₫</p>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
+                                <p>34.190.000&nbsp;₫</p>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
+                                <p>34.190.000&nbsp;₫</p>
                             </div>
                         </div>
                     </div>
@@ -137,8 +137,7 @@ and open the template in the editor.
                 <div class="col-md-12 col-sm-12 block-header">
                     <h1>Điện thoại mới nhất</h1>
                 </div>
-                
-                
+                <!--load with ajax-->
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -155,22 +154,7 @@ and open the template in the editor.
         <jsp:include page="footer.jsp"/>
         <jsp:include page="common/script.jsp"/>
         <script src="js/index.js"></script>
-        <script>
-            function loadTop4() {
-            var amount = document.getElementsByClassName("product").length;
-            $.ajax({
-                type: "post",
-                url: "/cellphone/loadtop4products",
-                data: {
-                exist: amount
-                },
-                success: function (response) {
-                var row = document.getElementById("newlist");
-                row.innerHTML += response;
-                }
-            });
-            }
-        </script>
+
     </body>
     
 </html>

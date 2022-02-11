@@ -95,4 +95,15 @@ function loadTop4() {
       row.innerHTML += response;
       }
   });
-  }
+}
+
+$(document).ready(function(){
+  $.ajax({
+    type: "post",
+    url: "/cellphone/loadtop4product",
+    success: function (response) {
+    var row = document.getElementById("newlist");
+    row.innerHTML += response;
+    }
+});
+});

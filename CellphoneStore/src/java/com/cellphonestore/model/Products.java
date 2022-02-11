@@ -14,14 +14,14 @@ public class Products {
     int cid;
     String name;
     String image;
-    float price;
+    int price;
     String description;
     int amount;
 
     public Products() {
     }
 
-    public Products(String pid, int cid, String name, String image, float price, String description, int amount) {
+    public Products(String pid, int cid, String name, String image, int price, String description, int amount) {
         this.pid = pid;
         this.cid = cid;
         this.name = name;
@@ -63,11 +63,11 @@ public class Products {
         this.image = image;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -86,6 +86,8 @@ public class Products {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    
     
     
 }
