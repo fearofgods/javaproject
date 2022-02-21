@@ -1,9 +1,11 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.cellphonestore.model;
+
+import java.sql.Date;
 
 /**
  *
@@ -13,6 +15,9 @@ public class Users {
     String firstname;
     String lastname;
     String email;
+    String phone;
+    String address;
+    Date birthday;
     String username;
     String password;
     String role;
@@ -20,10 +25,13 @@ public class Users {
     public Users() {
     }
 
-    public Users(String firstname, String lastname, String email, String username, String password, String role) {
+    public Users(String firstname, String lastname, String email, String phone, String address, Date birthday, String username, String password, String role) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.birthday = birthday;
         this.username = username;
         this.password = password;
         this.role = role;
@@ -53,6 +61,30 @@ public class Users {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -76,6 +108,8 @@ public class Users {
     public void setRole(String role) {
         this.role = role;
     }
+
+    
     
     
 }

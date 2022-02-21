@@ -4,6 +4,7 @@
     Author     : hongd
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +41,9 @@
                     <div class="form px-4 pt-5"> 
                         <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập"> 
                         <input type="password" name="password" class="form-control" placeholder="Mật khẩu"> 
-                        <span>${message}</span>
+                        <c:if test="${not empty message}">
+                            <span>${message}</span>
+                        </c:if>
                         <button class="btn btn-dark btn-block">Đăng nhập</button> 
                     </div>
                 </form>

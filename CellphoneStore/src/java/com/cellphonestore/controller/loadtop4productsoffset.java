@@ -53,7 +53,7 @@ public class loadtop4productsoffset extends HttpServlet {
             out.println("<div class=\"col-lg-3 col-md-4 col-sm-6 product\">\n" +
 "                    <div class=\"item-wrapper\">\n" +
 "                        <div class=\"item-img\">\n" +
-"                            <a href=\"#\"><img src=\""+products.getImage()+"\" class=\"img-responsive img-i\"\n" +
+"                            <a href=\""+request.getContextPath()+"/product?pid="+products.getPid()+"\"><img src=\""+products.getImage()+"\" class=\"img-responsive img-i\"\n" +
 "                                    alt=\""+products.getName()+"\"></a>\n" +
 "\n" +
 "                        </div>\n" +

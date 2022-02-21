@@ -86,7 +86,7 @@ public class register extends HttpServlet {
         UserDAO dao = new UserDAO();
         
         if (firstname != null && lastname != null && email != null && username != null && password != null) {
-            boolean check = dao.findUserByUser(username);
+            boolean check = dao.findUserByUsername(username);
             if (check == false) {
                 dao.register(firstname, lastname, email, username, password);
                 response.sendRedirect("login.jsp");
@@ -98,7 +98,6 @@ public class register extends HttpServlet {
             request.setAttribute("message1", "*Không được để trống!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-        
   
     }
 

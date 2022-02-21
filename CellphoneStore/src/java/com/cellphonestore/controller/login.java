@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -76,15 +77,33 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        HttpSession session = request.getSession();
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         UserDAO dao = new UserDAO();
         Users a = dao.login(user, pass);
         if (a == null) {
-            request.setAttribute("message", "*Wrong name or password!");
+            request.setAttribute("message", "*Sai tên đăng nhập hoặc mật khẩu!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            response.sendRedirect("index.jsp");
+            if (a.getRole() == null) {
+                request.setAttribute("message", "*Bạn không có quyền truy cập!");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            } 
+            else switch (a.getRole()) {
+                case "sa":
+                    session.setAttribute("user", a);
+                    response.sendRedirect(request.getContextPath()+"/admin-home");
+                    break;
+                case "us":
+                    session.setAttribute("user", a);
+                    response.sendRedirect(request.getContextPath()+"/");
+                    break;
+                default:
+                    request.setAttribute("message", "*Bạn không có quyền truy cập!");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    break;
+            }
         }
     }
 

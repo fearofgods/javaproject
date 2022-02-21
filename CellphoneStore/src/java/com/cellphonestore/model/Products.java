@@ -10,18 +10,20 @@ package com.cellphonestore.model;
  * @author hongd
  */
 public class Products {
-    String pid;
-    int cid;
-    String name;
-    String image;
-    int price;
-    String description;
-    int amount;
+    private int id;
+    private String pid;
+    private int cid;
+    private String name;
+    private String image;
+    private int price;
+    private String description;
+    private int amount;
 
     public Products() {
     }
 
-    public Products(String pid, int cid, String name, String image, int price, String description, int amount) {
+    public Products(int id, String pid, int cid, String name, String image, int price, String description, int amount) {
+        this.id = id;
         this.pid = pid;
         this.cid = cid;
         this.name = name;
@@ -29,6 +31,14 @@ public class Products {
         this.price = price;
         this.description = description;
         this.amount = amount;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPid() {
@@ -86,6 +96,8 @@ public class Products {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    
 
     
     

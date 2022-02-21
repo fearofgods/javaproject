@@ -29,7 +29,7 @@ public class UserDAO extends HttpServlet{
             ps.setString(2, pass);
             rs = ps.executeQuery();
             while (rs.next()) {                
-                return new Users(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                return new Users(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9));
             }
         } catch (Exception e) {
             System.out.println("Connection error! "+e);
@@ -57,7 +57,7 @@ public class UserDAO extends HttpServlet{
         return null;
     }
     
-    public boolean findUserByUser(String user){
+    public boolean findUserByUsername(String user){
         String query = "select * from Users\n"
                 + "where user = ?";
         try {

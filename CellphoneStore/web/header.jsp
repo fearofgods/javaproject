@@ -9,7 +9,7 @@
 <header class="header">
         <div class="header-child-1">
             <div class="logo">
-                <a href="<%=request.getContextPath()%>/"><img src="img/logo/store.svg" width="30" height="30" alt="Logo"></a>
+                <a href="<c:url value="/"/>"><img src="img/logo/store.svg" width="30" height="30" alt="Logo"></a>
                 <div class="brand-name">
                     <p>Cellphone Store</p>
                 </div>
@@ -20,17 +20,23 @@
                 <input type="search" name="" placeholder="Bạn muốn tìm gì?" id="search-box">
                 <label for="search-box" class="fas fa-search"></label>
             </form>
-
             <div class="icons">
                 <div class="shoping-cart">
                     <div class="fas fa-shopping-cart"></div>
                     <a href="">Giỏ hàng</a>
                 </div>
-                <div class="users">
-                    <div class="fas fa-user"></div>
-                    <a href="<%=request.getContextPath()%>/login">Đăng nhập</a>
-                </div>
-
+                <c:if test="${sessionScope.user != null}">
+                    <div class="users">
+                        <div class="fas fa-user"></div>
+                        <a href="<%=request.getContextPath()%>/login">Xin chào, ${sessionScope.user.lastname}</a>
+                    </div>
+                </c:if>
+                <c:if test="${sessionScope.user == null}">
+                    <div class="users">
+                        <div class="fas fa-user"></div>
+                        <a href="<c:url value="/login"/>">Đăng nhập</a>
+                    </div>
+                </c:if>
             </div>
         </div>
         <div class="header-child-2">

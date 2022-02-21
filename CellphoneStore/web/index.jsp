@@ -23,39 +23,13 @@ and open the template in the editor.
     <body>
         <!-- Navbar -->
         <jsp:include page="header.jsp" />
-        <!-- <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6 wrapper-slider">
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img class="d-block w-100" src="img/banner/banner-ip13.jpg" alt="First slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="img/banner/banner-rdm11.jpg" alt="Second slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="img/banner/banner-zflip.jpg" alt="Third slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="img/banner/banner-zfold.png" alt="Fourth slide">
-                          </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Slider -->
-        
-
         <!-- Info -->
         <div class="container">
 
             <div class="banner col-md-12 col-12 col-sm-12">
 
         </div>
-
+            <!-- Slider top sell -->
         <div class="top-list col-md-12 col-12 col-sm-12">
             <div class="row">
                 <div class="col-md-12 col-sm-12 block-header">
@@ -71,7 +45,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000&nbsp;₫</p>
+                                <p>34.190.000đ</p>
                             </div>
                         </div>
                     </div>
@@ -84,7 +58,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000&nbsp;₫</p>
+                                <p>34.190.000đ</p>
                             </div>
                         </div>
                     </div>
@@ -96,7 +70,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000&nbsp;₫</p>
+                                <p>34.190.000đ</p>
                             </div>
                         </div>
                     </div>
@@ -108,7 +82,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000&nbsp;₫</p>
+                                <p>34.190.000đ</p>
                             </div>
                         </div>
                     </div>
@@ -120,7 +94,7 @@ and open the template in the editor.
                             </div>
                             <div class="item-top-title">
                                 <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000&nbsp;₫</p>
+                                <p>34.190.000đ</p>
                             </div>
                         </div>
                     </div>
@@ -131,7 +105,7 @@ and open the template in the editor.
         <div class="banner col-md-12 col-12 col-sm-12">
             <h2>ADS</h2>
         </div>
-
+        <!-- New products -->
         <div class="default-list col-md-12 col-12 col-sm-12">
             <div class="row" id="newlist">
                 <div class="col-md-12 col-sm-12 block-header">
