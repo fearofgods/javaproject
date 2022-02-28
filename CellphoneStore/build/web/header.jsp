@@ -16,8 +16,8 @@
             </div>
 
 
-            <form action="" class="search-form">
-                <input type="search" name="" placeholder="Bạn muốn tìm gì?" id="search-box">
+            <form action="search" class="search-form">
+                <input type="search" name="search_value" placeholder="Bạn muốn tìm gì?" id="search-box">
                 <label for="search-box" class="fas fa-search"></label>
             </form>
             <div class="icons">
@@ -28,7 +28,11 @@
                 <c:if test="${sessionScope.user != null}">
                     <div class="users">
                         <div class="fas fa-user"></div>
-                        <a href="<%=request.getContextPath()%>/login">Xin chào, ${sessionScope.user.lastname}</a>
+                        <a href="#">Xin chào, ${sessionScope.user.lastname}</a>
+                        <div class="dropdown-content">
+                            <a href="#">Thông tin tài khoản</a>
+                            <a href="<c:url value="/logout"/>">Đăng xuất</a>
+                        </div>
                     </div>
                 </c:if>
                 <c:if test="${sessionScope.user == null}">
@@ -52,9 +56,14 @@
                                     <!--load with ajax-->
                                 </div>
                             </li>
-                            <li class="nav-component dropdown">
-                                <a class="nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Chính sách bảo hành</a>
-                            </li>
+                            <li class="nav-component dropdown ">
+                                <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Sản phẩm theo giá</a>
+                                <div class="dropdown-menu" role="menu">
+                                    <a class="dropdown-item" role="presentation" href="<c:url value="/productbyprice?min=4&max=5"/>">Từ 4 - 5 triệu</a>
+                                    <a class="dropdown-item" role="presentation" href="<c:url value="/productbyprice?min=5&max=10"/>">Từ 5 - 10 triệu</a>
+                                    <a class="dropdown-item" role="presentation" href="<c:url value="/productbyprice?min=10&max=30"/>">Từ 10 - 30 triệu</a>
+                                </div>
+                            </li> 
                             <li class="nav-component dropdown">
                                 <a class="nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Miễn phí giao hàng</a>
                             </li>
@@ -66,4 +75,4 @@
                 </div>
             </nav> 
         </div>
-    </header>
+</header>

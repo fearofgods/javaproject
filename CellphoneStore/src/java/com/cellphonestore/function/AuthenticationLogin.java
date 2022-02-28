@@ -22,27 +22,34 @@ import javax.servlet.http.HttpSession;
  *
  * @author hongd
  */
-//@WebFilter("/cellphone")
-public class authentication implements Filter {
-    
+public class AuthenticationLogin implements Filter {
+
+    private static final boolean debug = true;
+
+    // The filter configuration object we are associated with.  If
+    // this value is null, this filter instance is not currently
+    // configured. 
     private ServletContext context;
     protected String ADMIN = "sa";
     protected String USER = "us";
-    
+
+    public AuthenticationLogin() {
+    }
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         this.context = filterConfig.getServletContext();
     }
-    
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        String url = request.getRequestURI();
-        System.out.println(url);
+        String url_raw = request.getRequestURI();
+        String url = url_raw.substring(10,url_raw.length());
         HttpSession session = request.getSession();
+        Users a = (Users) session.getAttribute("user");
         if (url.startsWith("/admin")) {
-            Users a = (Users) session.getAttribute("user");
             if (a != null) {
                 if (a.getRole().equals(ADMIN)) {
                     chain.doFilter(req, res);
@@ -54,15 +61,15 @@ public class authentication implements Filter {
                 request.setAttribute("message", "*Bạn chưa đăng nhập!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-        } 
-        else {
+        } else {
             chain.doFilter(req, res);
         }
     }
-    
+
     @Override
     public void destroy() {
-        
+        System.out.println("Destroy"); //To change body of generated methods, choose Tools | Templates.
     }
-    
+   
+
 }

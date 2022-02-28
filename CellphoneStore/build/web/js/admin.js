@@ -1,6 +1,6 @@
 function openNav() {
     var width = document.getElementById('sidenav').clientWidth;
-    if (width == 0) {
+    if (width === 0) {
         document.getElementById("sidenav").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";
     } else {
@@ -52,15 +52,26 @@ function openNav() {
   }
 
 
-function openModal() {
+function openModal(pid) {
     var check = document.getElementById('check-delete-modal');
-    // console.log("check.style.display");
-        check.style.display = "block"; 
+        check.style.display = "block";
+        if (pid !== undefined && pid !== null) {
+          document.getElementById('modal-title').innerHTML = "Bạn có muốn xóa "+pid;
+        }
+        
+        document.getElementsByTagName('body')[0].style.overflow = "hidden";
         disableScroll();
+        document.getElementById('modal-delete-btn-1').onclick = function(){
+          window.location="admin-delete?pid="+pid;
+        };
+          
+        
+        
 }
 
 function closeModal(){
     var check = document.getElementById('check-delete-modal');
         check.style.display = "none";
+        document.getElementsByTagName('body')[0].style.overflow = "auto";
         enableScroll();
 }

@@ -3,7 +3,7 @@
     Created on : Feb 12, 2022, 9:29:24 AM
     Author     : hongd
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -23,37 +23,7 @@ and open the template in the editor.
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-child-1">
-            <div class="logo">
-                <a href="#"><img src="img/logo/store.svg" width="30" height="30" alt=""></a>
-                <div class="brand-name">
-                    <p>Cellphone Store</p>
-                </div>
-            </div>
-
-            <form action="" class="search-form">
-                <input type="search" name="" placeholder="Bạn muốn tìm gì?" id="search-box">
-                <label for="search-box" class="fas fa-search"></label>
-            </form>
-
-            <div class="icons">
-                <div class="users">
-                    <div class="fas fa-user"></div>
-                    <a href="">Xin chào, ${sessionScope.user.lastname}</a>
-                </div>
-
-            </div>
-        </div>
-    </header>
-
-    <div class="my-sidenav" id="sidenav">
-        <a href="#"><i class="fa-solid fa-gauge"></i>&nbsp; Tổng quan</a>
-        <a href="#"><i class="fa-solid fa-file-invoice-dollar"></i>&nbsp; Đơn hàng</a>
-        <a href="#"><i class="fa-solid fa-list-check"></i>&nbsp; Quản lí trang</a>
-        <!-- <a href="#">Contact</a> -->
-    </div>
-    <a onclick="openNav()" id="menu"><i class="fa-solid fa-bars"></i></a>
+    <jsp:include page="head-sidenav.jsp" />
     
     <div id="main">
         <div class="container-fluid">

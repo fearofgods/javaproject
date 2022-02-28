@@ -36,5 +36,37 @@ public class CategoryDAO{
         }
         return list;
     }
+    
+    public Category getCateByCid(int cid){
+        String query = "select * from Category where cid = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, cid);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Category(rs.getInt(1), rs.getString(2));
+            }
+        } catch (Exception e) {
+            System.out.println("Error"+e);
+        }
+        return null;
+    }
+    
+    public Category addCategory(String cate){
+        String query = "INSERT INTO Category(cname)\n" +
+                       "VALUES (?) ";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, cate);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error"+e);
+        }
+        return null;
+    }
+    
+    
 }
 

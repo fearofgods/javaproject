@@ -25,9 +25,7 @@ and open the template in the editor.
         <jsp:include page="header.jsp" />
         <!-- Info -->
         <div class="container">
-
             <div class="banner col-md-12 col-12 col-sm-12">
-
         </div>
             <!-- Slider top sell -->
         <div class="top-list col-md-12 col-12 col-sm-12">

@@ -93,7 +93,7 @@ h2{
 
 /* Hot list */
 .default-list{
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
     margin-top: 20px;
     width: 100%;
     background-color: #f8f8ff;
@@ -104,7 +104,6 @@ h2{
 .block-header{
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    /* background-color: gold; */
     background: transparent;
     background-image: url(https://cdn.discordapp.com/attachments/892072635675050054/940320609576050708/tagline_desktop.png);
     margin-bottom: 20px;
@@ -225,11 +224,6 @@ h3{
     background-color: grey;
     height: 30px;
     width: 150px;
-}
-
-.page-footer{
-    background-color: #343A40;
-    color: white;
 }
 
 .material-icons {

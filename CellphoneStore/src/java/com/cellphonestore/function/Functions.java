@@ -6,6 +6,8 @@
 package com.cellphonestore.function;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -21,6 +23,17 @@ public class Functions {
         String resultChangeChar = resultRaw.substring(3, resultRaw.length());
         String result = resultChangeChar.replace(",", ".");
 	return result;
+    }
+    
+    public List<String> splitString(String input){
+        List<String> list = new ArrayList<>();
+        String stringraw[] = input.trim().split(",");
+        for (int i = 0; i < stringraw.length; i++) {
+            if (!stringraw[i].trim().isEmpty()) {
+                list.add(stringraw[i].trim());
+            }
+        }
+        return list;
     }
     
 }

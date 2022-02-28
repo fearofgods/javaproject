@@ -66,7 +66,7 @@ and open the template in the editor.
             </div>
             <div class="modal-delete-icon">
                 <i class="fa-solid fa-question"></i>
-                <h2>Bạn có muốn xóa 1</h2>
+                <h2 id="modal-title"> </h2>
             </div>
             
             <div class="modal-delete-btn">
@@ -80,69 +80,145 @@ and open the template in the editor.
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 content">
-                    <h1>Sản phẩm</h1>
+                    <h1>Tất cả sản phẩm</h1>
+                    <div class="second-nav">
+                        <a href="#"><p><i class="fa-solid fa-plus"></i>&nbsp;Thêm sản phẩm mới</p></a>
+                        <select name="" id="category">
+                            <option value="">Hãy chọn hãng</option>
+                            <option value="">Apple</option>
+                            <option value="">Samsung</option>
+                            <option value="">Xiaomi</option>
+                            <option value="">Vivo</option>
+                        </select>
+                        <select name="" id="sort">
+                            <option value="">Sắp xếp</option>
+                            <option value="">Mới nhất</option>
+                            <option value="">Cũ nhất</option>
+                            <option value="">Giá tăng lên</option>
+                            <option value="">Giá giảm dần</option>
+                        </select>
+                    </div>
+                    
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">#ID</th>
                             <th scope="col">Ảnh sản phẩm</th>
                             <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Mã sản phẩm</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Số lượng</th>
-                            <th scope="col">Chú thích</th>
                             <th scope="col">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" alt="Apple Iphone 12 PRO"></td>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
                                 <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
                                 <td>18.490.000</td>
                                 <td>50</td>
-                                <td>Sản phẩm cao cấp do Apple sản suất</td>
+                                <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal('SM_S225G')">Xóa</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
+                                <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
+                                <td>18.490.000</td>
+                                <td>50</td>
                                 <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
                             </tr>
                             <tr>
                                 <th scope="row">1</th>
-                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" alt="Apple Iphone 12 PRO"></td>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
                                 <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
                                 <td>18.490.000</td>
                                 <td>50</td>
-                                <td>Sản phẩm cao cấp do Apple sản suất</td>
                                 <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
                             </tr>
                             <tr>
                                 <th scope="row">1</th>
-                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" alt="Apple Iphone 12 PRO"></td>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
                                 <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
                                 <td>18.490.000</td>
                                 <td>50</td>
-                                <td>Sản phẩm cao cấp do Apple sản suất</td>
                                 <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
                             </tr>
                             <tr>
                                 <th scope="row">1</th>
-                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" alt="Apple Iphone 12 PRO"></td>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
                                 <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
                                 <td>18.490.000</td>
                                 <td>50</td>
-                                <td>Sản phẩm cao cấp do Apple sản suất</td>
                                 <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
                             </tr>
                             <tr>
                                 <th scope="row">1</th>
-                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" alt="Apple Iphone 12 PRO"></td>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
                                 <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
                                 <td>18.490.000</td>
                                 <td>50</td>
-                                <td>Sản phẩm cao cấp do Apple sản suất</td>
                                 <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
                             </tr>
-                        
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
+                                <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
+                                <td>18.490.000</td>
+                                <td>50</td>
+                                <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
+                                <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
+                                <td>18.490.000</td>
+                                <td>50</td>
+                                <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
+                                <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
+                                <td>18.490.000</td>
+                                <td>50</td>
+                                <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><img src="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
+                                <td>Apple Iphone 12 PRO</td>
+                                <td>AP_12PRO</td>
+                                <td>18.490.000</td>
+                                <td>50</td>
+                                <td><a href="">Xem chi tiết</a>&nbsp;|&nbsp;<a href="#" onclick="openModal()">Xóa</a></td>
+                            </tr>
+                            
+                            
+                            
                         
                         </tbody>
+                        
                     </table>
+                    <div class="paging-wrapper">
+                        <ul class="paging">
+                            <li class="paging-items"><a href=""><i class="fa-solid fa-angle-left"></i>Quay lại</a></li>
+                            <li class="paging-items"><a href="">1</a></li>
+                            <li class="paging-items"><a href="">2</a></li>
+                            <li class="paging-items"><a href="">3</a></li>
+                            <li class="paging-items"><a href="">Tiếp<i class="fa-solid fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
             

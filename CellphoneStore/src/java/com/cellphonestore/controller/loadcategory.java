@@ -44,7 +44,7 @@ public class loadcategory extends HttpServlet {
         PrintWriter out = response.getWriter();
         for (Category cate : list) {
             if (amount < list.size()) {    
-                out.println("<a class=\"dropdown-item cateitems\" role=\"presentation\"href=\"#\">"+cate.getCname()+"</a>");
+                out.println("<a class=\"dropdown-item cateitems\" role=\"presentation\"href=\""+request.getContextPath()+"/productscate?category="+cate.getCid()+"\">"+cate.getCname()+"</a>");
             }
         }
     }
