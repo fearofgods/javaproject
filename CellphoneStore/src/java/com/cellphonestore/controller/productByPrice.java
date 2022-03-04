@@ -5,7 +5,9 @@
  */
 package com.cellphonestore.controller;
 
+import com.cellphonestore.dao.CategoryDAO;
 import com.cellphonestore.dao.ProductDAO;
+import com.cellphonestore.model.Category;
 import com.cellphonestore.model.Products;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -68,11 +70,14 @@ public class productByPrice extends HttpServlet {
             int max = Integer.parseInt(max_raw);
             com.cellphonestore.dao.ProductDAO pdao = new ProductDAO();
             List<Products> plist = pdao.searchByPrice(min, max);
+            
             if (plist != null && !plist.isEmpty()) {
+                
                 request.setAttribute("plist", plist);
                 request.setAttribute("title", "Sản phẩm trong khoảng giá từ "+min+" triệu - "+max+" triệu");
                 request.getRequestDispatcher("searchresult.jsp").forward(request, response);
             } else {
+
                 request.setAttribute("title", "Sản phẩm trong khoảng giá từ "+min+"triệu - "+max+" triệu");
                 request.getRequestDispatcher("searchresult.jsp").forward(request, response);
             }

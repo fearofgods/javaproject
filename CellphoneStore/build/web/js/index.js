@@ -102,7 +102,34 @@ $(document).ready(function(){
     url: "/cellphone/loadtop4product",
     success: function (response) {
     var row = document.getElementById("newlist");
-    row.innerHTML += response;
+      if (row !== null && row !== undefined) {
+        row.innerHTML += response;
+      }
     }
+  });
 });
+
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+};
+
+addLoadEvent(function () {
+  let price = document.getElementsByClassName('i-price');
+  for (let i = 0; i < price.length; i++) {
+    newPrice_raw = price[i].innerHTML;
+    newPrice = parseInt(newPrice_raw, 10);
+    newPrice = newPrice.toLocaleString('vn-VN');
+    newPrice = newPrice.replaceAll(',','.').concat('đ');
+    price[i].innerHTML = newPrice;
+  }
 });

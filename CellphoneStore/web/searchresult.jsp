@@ -40,10 +40,10 @@
                                         </div>
                                         <div class="item-price">
                                             <h3>${p.name}</h3>
-                                            <p>${p.price}</p>
+                                            <p class="i-price" >${p.price}</p>
                                         </div>
                                         <div class="my-btn">
-                                            <button id="btn-1">Thêm vào giỏ</button>
+                                            <button id="btn-1" onclick="testPrice()">Thêm vào giỏ</button>
                                             <button id="btn-2">Mua ngay</button>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
-                            <div class="col-12" style="height: 250px;">
+                            <div class="col-12" style="height: 500px;">
                                 <p>Không tìm thấy thiết bị nào</p>
                             </div>
                         </c:otherwise>
