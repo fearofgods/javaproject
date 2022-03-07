@@ -6,13 +6,14 @@
 package com.cellphonestore.controller;
 
 import com.cellphonestore.dao.ProductDAO;
-import com.cellphonestore.function.Functions;
+import com.cellphonestore.model.Cart;
 import com.cellphonestore.model.Products;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hongd
  */
-@WebServlet(name = "loadtop4product", urlPatterns = {"/loadtop4product"})
-public class loadtop4products extends HttpServlet {
+@WebServlet(name = "showcartController", urlPatterns = {"/cart"})
+public class showcartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,33 +37,17 @@ public class loadtop4products extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        //Load dao
-        com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
-        //Get list product
-        List<Products> list = dao.getTop4();
-        //Init new function
-        com.cellphonestore.function.Functions f = new Functions();
-        for (Products products : list) {
-            //Replace int price to currency format 
-            String price = f.Currency(products.getPrice());
-            out.println("<div class=\"col-lg-3 col-md-4 col-sm-6 product\">\n" +
-"                    <div class=\"item-wrapper\">\n" +
-"                        <div class=\"item-img\">\n" +
-"                            <a href=\""+request.getContextPath()+"/product?pid="+products.getPid()+"\"><img src=\""+products.getImage()+"\" class=\"img-responsive img-i\"\n" +
-"                                    alt=\""+products.getName()+"\"></a>\n" +
-"\n" +
-"                        </div>\n" +
-"                        <div class=\"item-price\">\n" +
-"                            <h3>"+products.getName()+"</h3>\n" +
-"                            <p>"+price+"&nbsp;₫</p>\n" +
-"                        </div>\n" +
-"                        <div class=\"my-btn\">\n" +
-"                            <button onclick=\"buy("+products.getId()+")\" id=\"btn-1\">Thêm vào giỏ</button>\n" +
-"                            <button id=\"btn-2\">Mua ngay</button>\n" +
-"                        </div>\n" +
-"                    </div>\n" +
-"                </div>");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet showcartController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet showcartController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -78,7 +63,20 @@ public class loadtop4products extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
+        List<Products> list = dao.getAll();
+        Cookie arr[] = request.getCookies();
+        String element = "";
+        if (arr != null) {
+            for (Cookie cookie : arr) {
+                if (cookie.getName().equals("cart")) {
+                    element += cookie.getValue();
+                }
+            }
+        }
+        Cart cart = new Cart(element, list);
+        request.setAttribute("cart", cart);
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
     /**

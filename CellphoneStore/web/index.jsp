@@ -20,7 +20,7 @@ and open the template in the editor.
         <jsp:include page="common/link.jsp"/>
         <link rel="stylesheet" href="styles/index.css">
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <!-- Navbar -->
         <jsp:include page="header.jsp" />
         <!-- Info -->

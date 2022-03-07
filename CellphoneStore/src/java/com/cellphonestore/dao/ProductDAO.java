@@ -91,6 +91,22 @@ public class ProductDAO {
         }
         return null;
     }
+    
+    public Products getProductById2(int id) {
+        String query = "Select * from Products where id = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Products(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getInt(8));
+            }
+        } catch (Exception e) {
+            System.out.println("Error" + e);
+        }
+        return null;
+    }
 
     public ProductDetails getInfoById(String id) {
         String query = "Select * from ProductDetails where pid = ?";

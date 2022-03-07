@@ -6,9 +6,12 @@
 package com.cellphonestore.controller;
 
 import com.cellphonestore.dao.UserDAO;
+import com.cellphonestore.function.Functions;
 import com.cellphonestore.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+//import java.util.Date;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author hongd
  */
-@WebServlet(name = "login", urlPatterns = {"/login"})
-public class login extends HttpServlet {
+@WebServlet(name = "profileController", urlPatterns = {"/profile"})
+public class profileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +43,10 @@ public class login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet profileController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet profileController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +64,15 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+        } else {
+//            Users a = (Users)session.getAttribute("user");
+//            com.cellphonestore.dao.UserDAO dao = new UserDAO();
+//            Users x = dao.findUserByUsername(a.getUsername());
+            request.getRequestDispatcher("profile.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -75,35 +86,31 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
+        request.setCharacterEncoding("UTF-8");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String birthday_raw = request.getParameter("birthday");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
         HttpSession session = request.getSession();
-        String user = request.getParameter("username");
-        String pass = request.getParameter("password");
-        UserDAO dao = new UserDAO();
-        Users a = dao.login(user, pass);
-        if (a == null) {
-            request.setAttribute("message", "*Sai tên đăng nhập hoặc mật khẩu!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            if (a.getRole() == null) {
-                request.setAttribute("message", "*Bạn không có quyền truy cập!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            } 
-            else switch (a.getRole()) {
-                case "sa":
-                    session.setAttribute("user", a);
-                    response.sendRedirect(request.getContextPath()+"/admin-home");
-                    break;
-                case "us":
-                    session.setAttribute("user", a);
-                    response.sendRedirect(request.getContextPath()+"/");
-                    break;
-                default:
-                    request.setAttribute("message", "*Bạn không có quyền truy cập!");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                    break;
-            }
+        Users x = (Users) session.getAttribute("user");
+
+        try {
+            com.cellphonestore.function.Functions f = new Functions();
+            String birthday = f.myDateFormat(birthday_raw);
+            Date date = Date.valueOf(birthday);
+            System.out.println(date);
+            Users a = new Users(firstname, lastname, email, phone, address, date, x.getUsername(), x.getPassword(), x.getRole());
+            com.cellphonestore.dao.UserDAO dao = new UserDAO();
+            dao.updateProfile(a);
+            Users lg =dao.login(x.getUsername(), x.getPassword());
+            session.setAttribute("user", lg);
+            System.out.println("===Done===");
+            request.setAttribute("message", "Cập nhật thành công!");
+            request.getRequestDispatcher("profile.jsp").forward(request, response);
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
         }
     }
 

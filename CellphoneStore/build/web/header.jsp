@@ -23,14 +23,14 @@
         <div class="icons">
             <div class="shoping-cart">
                 <div class="fas fa-shopping-cart"></div>
-                <a href="">Giỏ hàng</a>
+                <a href="<c:url value="/cart"/>">Giỏ hàng</a>
             </div>
             <c:if test="${sessionScope.user != null}">
                 <div class="users">
                     <div class="fas fa-user"></div>
                     <a href="#">Xin chào, ${sessionScope.user.lastname}</a>
                     <div class="dropdown-content">
-                        <a href="#">Thông tin tài khoản</a>
+                        <a href="<c:url value="/profile"/>">Thông tin tài khoản</a>
                         <a href="<c:url value="/logout"/>">Đăng xuất</a>
                     </div>
                 </div>

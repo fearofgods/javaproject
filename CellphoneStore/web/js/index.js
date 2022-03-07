@@ -133,3 +133,7 @@ addLoadEvent(function () {
     price[i].innerHTML = newPrice;
   }
 });
+
+function buy(id) {
+  window.location= "atc?id="+id+"&num="+1;
+}

@@ -73,4 +73,24 @@ public class UserDAO extends HttpServlet{
         }
         return false;
     }
+    
+    
+    
+    public void updateProfile(Users a){
+        String query = "update Users set firstname = ?, lastname = ?, email = ?, phone = ? ,address= ?, birthday = ? where username = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setNString(1, a.getFirstname());
+            ps.setNString(2, a.getLastname());
+            ps.setString(3, a.getEmail());
+            ps.setString(4, a.getPhone());
+            ps.setNString(5, a.getAddress());
+            ps.setDate(6, a.getBirthday());
+            ps.setString(7, a.getUsername());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
+        }
+    }
 }

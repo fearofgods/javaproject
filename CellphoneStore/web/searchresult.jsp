@@ -16,7 +16,7 @@
         <jsp:include page="common/link.jsp"/>
         <link rel="stylesheet" href="styles/index.css">
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <!-- Navbar -->
         <jsp:include page="header.jsp" />
 
@@ -43,7 +43,7 @@
                                             <p class="i-price" >${p.price}</p>
                                         </div>
                                         <div class="my-btn">
-                                            <button id="btn-1" onclick="testPrice()">Thêm vào giỏ</button>
+                                            <button id="btn-1" onclick="buy(${p.id})">Thêm vào giỏ</button>
                                             <button id="btn-2">Mua ngay</button>
                                         </div>
                                     </div>

@@ -6,7 +6,10 @@
 package com.cellphonestore.function;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,17 +18,18 @@ import java.util.Locale;
  * @author hongd
  */
 public class Functions {
+
     //Convert int curency to string format curency ###.###.###
     public String Currency(int currencyAmount) {
         Locale locale = new Locale("vn", "VN");
-	NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
-	String resultRaw = numberFormat.format(currencyAmount);
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+        String resultRaw = numberFormat.format(currencyAmount);
         String resultChangeChar = resultRaw.substring(3, resultRaw.length());
         String result = resultChangeChar.replace(",", ".");
-	return result;
+        return result;
     }
-    
-    public List<String> splitString(String input){
+
+    public List<String> splitString(String input) {
         List<String> list = new ArrayList<>();
         String stringraw[] = input.trim().split(",");
         for (int i = 0; i < stringraw.length; i++) {
@@ -35,5 +39,17 @@ public class Functions {
         }
         return list;
     }
-    
+
+    public String myDateFormat(String input) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String output="";
+        try {
+            Date dates = sdf.parse(input);
+            sdf.applyPattern("yyyy-MM-dd");
+            output = sdf.format(dates);
+        } catch (ParseException e) {
+            System.out.println("Error: "+e);
+        }
+        return output;
+    }
 }

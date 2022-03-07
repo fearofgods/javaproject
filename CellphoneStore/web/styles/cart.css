@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+.content{
+    background-color: #343A40;
+    width: auto;
+    height: 550px;
+}
+
+h1{
+    text-align: center;
+    padding-top: 200px;
+    color: #ffffff;
+}
+
 .table>tbody>tr>td,tr{
     vertical-align: middle;
     text-align: center;
@@ -9,9 +21,23 @@
     width: 50%;
     height: 50%;
 }
-#qty-input{
+.qty-in{
     width: 50px;
     text-align: center;
+    border: none;
+    font-size: 18px;
+}
+
+.qty-btn{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.qty-btn:hover{
+    background-color: #888;
+    color: #ffffff;
 }
 
 .img-items{
