@@ -59,6 +59,17 @@
 
 
                 </div>
+                    <div class="paging">
+                        <ul >
+                            <c:forEach begin="1" end="${lastP}" var="i">
+                                <li><a href="<c:url value="/productscate?indexP=${i}&category=0"/>">${i}</a></li>
+                            </c:forEach>
+                            <!--<li><a href="">Prev</a></li>-->
+                            <!--<li><a href="">Next</a></li>-->
+                        </ul>
+                    </div>
+                
+
             </div>
         </div>
 

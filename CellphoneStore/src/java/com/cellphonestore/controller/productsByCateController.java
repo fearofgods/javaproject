@@ -42,7 +42,7 @@ public class productsByCateController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet productsByCateController</title>");            
+            out.println("<title>Servlet productsByCateController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet productsByCateController at " + request.getContextPath() + "</h1>");
@@ -66,22 +66,48 @@ public class productsByCateController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String search_raw = request.getParameter("category");
+        String index_raw = request.getParameter("indexP");
+        if (index_raw == null) {
+            index_raw = "1";
+        }
         try {
+            int index = Integer.parseInt(index_raw);
             int search = Integer.parseInt(search_raw);
             com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
             com.cellphonestore.dao.CategoryDAO cdao = new CategoryDAO();
-            List<Products> plist = dao.productByCid(search);
-            Category c = cdao.getCateByCid(search);
-            if (plist != null && !plist.isEmpty()) {
-                request.setAttribute("plist", plist);
-                request.setAttribute("title", "Tất cả sản phẩm của "+c.getCname());
-                request.getRequestDispatcher("searchresult.jsp").forward(request, response);
+            if (search != 0) {
+                List<Products> plist = dao.productByCid(search);
+                Category c = cdao.getCateByCid(search);
+                if (plist != null && !plist.isEmpty()) {
+                    request.setAttribute("plist", plist);
+                    request.setAttribute("title", "Tất cả sản phẩm của " + c.getCname());
+                    request.getRequestDispatcher("searchresult.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("title", "Tất cả sản phẩm của " + c.getCname());
+                    request.getRequestDispatcher("searchresult.jsp").forward(request, response);
+                }
             } else {
-                request.setAttribute("title", "Tất cả sản phẩm của "+c.getCname());
-                request.getRequestDispatcher("searchresult.jsp").forward(request, response);
+                List<Products> plist = dao.getAll();
+                int count = plist.size();
+                int lastPage = count/4;
+                if (count % 4 != 0) {
+                    lastPage++;
+                }
+                List<Products> list = dao.paging(index);
+                if (list != null && !list.isEmpty()) {
+                    request.setAttribute("plist", list);
+                    request.setAttribute("lastP", lastPage);
+                    request.setAttribute("display", "ds");
+                    request.setAttribute("title", "Tất cả sản phẩm");
+                    request.getRequestDispatcher("searchresult.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("title", "Tất cả sản phẩm");
+                    request.getRequestDispatcher("searchresult.jsp").forward(request, response);
+                }
             }
+
         } catch (IOException | NumberFormatException | ServletException e) {
-            System.out.println("Error"+e);
+            System.out.println("Error" + e);
         }
     }
 

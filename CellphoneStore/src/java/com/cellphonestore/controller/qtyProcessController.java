@@ -43,7 +43,7 @@ public class qtyProcessController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet qtyProcessController</title>");            
+            out.println("<title>Servlet qtyProcessController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet qtyProcessController at " + request.getContextPath() + "</h1>");
@@ -64,12 +64,16 @@ public class qtyProcessController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Cookie arr[] = request.getCookies();
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
         List<Products> list = dao.getAll();
-        Cookie array[] = request.getCookies();
-        String element="";
-        if (array != null) {
-            for (Cookie cookie : array) {
+        String id_raw = request.getParameter("id");
+        String num_raw = request.getParameter("num");
+//        String action = request.getParameter("action");
+        String element = "";
+
+        if (arr != null) {
+            for (Cookie cookie : arr) {
                 if (cookie.getName().equals("cart")) {
                     element += cookie.getValue();
                     cookie.setMaxAge(0);
@@ -77,39 +81,42 @@ public class qtyProcessController extends HttpServlet {
                 }
             }
         }
-        Cart cart = new Cart(element, list);
-        String num_raw = request.getParameter("num");
-        String id_raw = request.getParameter("id");
-        int id,num=0;
+        
+        Cart cart = new Cart(element, list);        
+        int id,num;
         try {
             id = Integer.parseInt(id_raw);
             num = Integer.parseInt(num_raw);
             Products p = dao.getProductById2(id);
-            int qty = p.getAmount();
-            if ((num==-1)&&cart.getQuantityById(id)<=1) {
+            int store = p.getAmount();
+            
+            if (num == -1 && cart.getQuantityById(id)<=1) {
+                
                 cart.removeItem(id);
-            } else {
-                if ((num==1) && cart.getQuantityById(id)>=qty) {
-                    num=0;
+            } else if(num == 0){
+                cart.removeItem(id);
+            }else {
+                if (num == 1 && cart.getQuantityById(id)>=store) {
+                    num = 0;
                 }
                 int price = p.getPrice()*2;
                 Item item = new Item(p, num, price);
                 cart.addItem(item);
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Error: "+e);
+            
+        } catch (Exception e) {
         }
         List<Item> items = cart.getItems();
         element = "";
         if (items.size()>0) {
-            element = items.get(0).getProducts().getId()+":"+items.get(0).getQuantity();
-            for (int i = 0; i < items.size(); i++) {
-                element += ","+items.get(i).getProducts().getId()+":"+items.get(i).getQuantity();
+            element=items.get(0).getProducts().getId()+":"+items.get(0).getQuantity();
+            for (int i = 1; i < items.size(); i++) {
+                element+=","+items.get(i).getProducts().getId()+":"+items.get(i).getQuantity();
             }
         }
-        Cookie cookie = new Cookie("cart", element);
-        cookie.setMaxAge(2*24*60*60);
-        response.addCookie(cookie);
+        Cookie c = new Cookie("cart",element);
+        c.setMaxAge(2*24*60*60);
+        response.addCookie(c);
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
@@ -125,39 +132,8 @@ public class qtyProcessController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
-        List<Products> list = dao.getAll();
-        Cookie array[] = request.getCookies();
-        String element = "";
-        if (array != null) {
-            for (Cookie cookie : array) {
-                if (cookie.getName().equals("cart")) {
-                    element += cookie.getValue();
-                    response.addCookie(cookie);
-                }
-            }
-        }
-        String id = request.getParameter("id");
-        String ids[] = element.split(",");
-        String out = "";
-        for (int i = 0; i < ids.length; i++) {
-            String string[] = ids[i].split(":");
-            if (!string[0].equals(id)) {
-                if (out.isEmpty()) {
-                    out = ids[i];
-                } else {
-                    element += ","+ids[i];
-                }
-            }
-        }
-        if (!out.isEmpty()) {
-            Cookie cookie = new Cookie("cart", out);
-            cookie.setMaxAge(2*24*60*60);
-            response.addCookie(cookie);
-        }
-        Cart cart = new Cart(out, list);
-        request.setAttribute("cart", cart);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        processRequest(request, response);
+
     }
 
     /**

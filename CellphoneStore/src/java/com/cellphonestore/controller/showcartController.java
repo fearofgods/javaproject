@@ -67,7 +67,7 @@ public class showcartController extends HttpServlet {
         List<Products> list = dao.getAll();
         Cookie arr[] = request.getCookies();
         String element = "";
-        if (arr != null) {
+        if (arr!=null) {
             for (Cookie cookie : arr) {
                 if (cookie.getName().equals("cart")) {
                     element += cookie.getValue();

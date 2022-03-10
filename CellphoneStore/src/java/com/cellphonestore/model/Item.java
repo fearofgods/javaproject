@@ -10,9 +10,11 @@ package com.cellphonestore.model;
  * @author hongd
  */
 public class Item {
+
     private Products products;
     private int quantity;
     private int price;
+//    private String description;
 
     public Item() {
     }
@@ -46,8 +48,6 @@ public class Item {
     public void setPrice(int price) {
         this.price = price;
     }
-    
-    
-    
+
     
 }

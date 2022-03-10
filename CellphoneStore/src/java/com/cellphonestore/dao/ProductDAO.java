@@ -59,6 +59,23 @@ public class ProductDAO {
         }
         return listTop4;
     }
+    
+    public List<Products> paging(int check){
+        List<Products> paging = new ArrayList<>();
+        String query = "Select * from Products order by id desc offset ? rows fetch next 4 rows only";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, (check - 1)*4);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                paging.add(new Products(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getInt(8)));
+            }
+        } catch (Exception e) {
+            System.out.println("Error:" + e);
+        }
+        return paging;
+    }
 
     public List<Products> getTop4() {
         List<Products> listTop4 = new ArrayList<>();
@@ -370,7 +387,7 @@ public class ProductDAO {
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
         Products a = dao.getProductById("OP_FIND3PRO");
         List<Storage> st = dao.getStorageById("AP_13PRO");
-        List<Products> pd = dao.search("apple");
+        List<Products> pd = dao.paging(1);
         for (Products storage : pd) {
             System.out.println(storage.getName());
         }

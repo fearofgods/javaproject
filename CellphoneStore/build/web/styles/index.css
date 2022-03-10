@@ -226,6 +226,25 @@ h3{
     width: 150px;
 }
 
+.paging{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paging ul{
+    display: flex;
+    list-style: none;
+    
+}
+.paging ul li{
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 18px;
+    /* background-color: #888; */
+}
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;

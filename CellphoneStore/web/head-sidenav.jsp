@@ -26,6 +26,7 @@
                         <div class="fas fa-user"></div>
                         <a href="#">Xin chào, ${sessionScope.user.lastname}</a>
                         <div class="dropdown-content">
+                            <a href="<c:url value="/"/>">Về trang chủ</a>
                             <a href="#">Thông tin tài khoản</a>
                             <a href="<c:url value="/logout"/>">Đăng xuất</a>
                         </div>

@@ -30,6 +30,9 @@
                     <div class="fas fa-user"></div>
                     <a href="#">Xin chào, ${sessionScope.user.lastname}</a>
                     <div class="dropdown-content">
+                        <c:if test="${sessionScope.user.role == 'sa'}">
+                            <a href="<c:url value="/admin-home"/>">Trang quản lí</a>
+                        </c:if>
                         <a href="<c:url value="/profile"/>">Thông tin tài khoản</a>
                         <a href="<c:url value="/logout"/>">Đăng xuất</a>
                     </div>
@@ -54,9 +57,7 @@
                             <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" onclick="loadCategory()">Danh mục sản phẩm</a>
 
                             <div class="dropdown-menu" id="catemenu" role="menu">
-                                <c:forEach items="${clist}" var="p">
-                                    <a class="dropdown-item" role="presentation" href="<c:url value="/productscate?category=${p.cid}"/>">${p.cname}</a>
-                                </c:forEach>
+                                <a class="dropdown-item" role="presentation" href="<c:url value="/productscate?category=0"/>">Tất cả sản phẩm</a>
                             </div>
                         </li>
                         <li class="nav-component dropdown ">

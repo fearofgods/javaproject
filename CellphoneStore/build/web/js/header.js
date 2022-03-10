@@ -1,5 +1,5 @@
 function loadCategory(){
-    var amount = document.getElementsByClassName("cateitems").length
+    var amount = document.getElementsByClassName("cateitems").length;
     $.ajax({
         type: "post",
         url: "/cellphone/loadcategory",
@@ -11,8 +11,4 @@ function loadCategory(){
             row.innerHTML += response;
         }
     });
-}
-
-function search(){
-    
 }

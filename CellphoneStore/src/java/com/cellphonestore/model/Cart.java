@@ -12,70 +12,94 @@ import java.util.List;
  *
  * @author hongd
  */
-public class Cart {
-    private List<Item> items;
+public final class Cart {
+
+    private List<Item> items = new ArrayList<>();
+    private int total;
 
     public Cart() {
-        items=new ArrayList<>();
+    }
+
+    public Cart(int total) {
+        this.total = total;
     }
 
     public List<Item> getItems() {
         return items;
     }
-    public int getQuantityById(int id){
-        return getItemById(id).getQuantity();
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
     public Item getItemById(int id){
-//        System.out.println(items.isEmpty());
-        for(Item i:items){
-//            System.out.println(i.getPrice());
-            if(i.getProducts().getId()==id){
-                return i;
+        for (Item item : items) {
+            if (item.getProducts().getId() == id) {
+                return item;
             }
         }
         return null;
     }
-    public void addItem(Item t){
-        if(getItemById(t.getProducts().getId())!=null){
-            Item m=getItemById(t.getProducts().getId());
-            m.setQuantity(m.getQuantity()+t.getQuantity());
-        }else
-            items.add(t);
+    
+    public Products getProductsById(int id, List<Products> list){
+        for (Products products : list) {
+            if (products.getId() == id) {
+                return products;
+            }
+        }
+        return null;
     }
+    
     public void removeItem(int id){
-        if(getItemById(id)!=null){
+        if (getItemById(id)!=null) {
             items.remove(getItemById(id));
         }
     }
+    
+    public void addItem(Item item){
+        if (getItemById(item.getProducts().getId())!=null) {
+            Item itemInList = getItemById(item.getProducts().getId());
+            itemInList.setQuantity(itemInList.getQuantity()+item.getQuantity());
+        } else {
+            items.add(item);
+        }
+    }
+    
+    public int getQuantityById(int id){
+        return getItemById(id).getQuantity();
+    }
+    
     public int getTotalMoney(){
-        int t=0;
-        for(Item i:items)
-            t+=(i.getQuantity()*i.getPrice());
-        return t;
-    }
-    private Products getProductById(int id,List<Products> list){
-        for(Products i:list){
-            if(i.getId()==id)
-                return i;
+        for (Item item : items) {
+            total+=(item.getQuantity()*item.getPrice());
         }
-        return null;
+        return total;
     }
-    public Cart(String txt,List<Products> list){
-        items=new ArrayList<>();
-        try{
-        if(txt!=null && txt.length()!=0){
-            String[] s=txt.split(",");
-            for(String i:s){
-                String[] n=i.split(":");
-                int id=Integer.parseInt(n[0]);
-                int quantity=Integer.parseInt(n[1]);
-                Products p=getProductById(id, list);
-                Item t=new Item(p, quantity, p.getPrice()*2);
-                addItem(t);
+    
+    
+    public Cart(String txt, List<Products> list){
+        try {
+            if (txt != null && !txt.isEmpty()) {
+                String s[] = txt.split(",");
+                for (String string : s) {
+                    String split[] =string.split(":");
+                    int id = Integer.parseInt(split[0]);
+                    int quantity = Integer.parseInt(split[1]);
+                    Products pdt = getProductsById(id, list);
+                    Item item = new Item(pdt, quantity, pdt.getPrice()*2);
+                    addItem(item);
+                }
             }
-        }
-        }catch(NumberFormatException e){
-            System.out.println("Error: "+e);
+        } catch (Exception e) {
         }
     }
+    
 }

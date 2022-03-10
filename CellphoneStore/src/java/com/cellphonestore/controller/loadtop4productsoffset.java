@@ -33,7 +33,6 @@ public class loadtop4productsoffset extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,32 +42,34 @@ public class loadtop4productsoffset extends HttpServlet {
         String amount_raw = request.getParameter("exist");
         int amount = Integer.parseInt(amount_raw);
         //Get list product
-        List<Products> list = dao.getTop4Offset(amount);
-        //Init new function
-        com.cellphonestore.function.Functions f = new Functions();
-        PrintWriter out = response.getWriter();
-        for (Products products : list) {
-            //Replace int price to currency format 
-            String price = f.Currency(products.getPrice());
-            out.println("<div class=\"col-lg-3 col-md-4 col-sm-6 product\">\n" +
-"                    <div class=\"item-wrapper\">\n" +
-"                        <div class=\"item-img\">\n" +
-"                            <a href=\""+request.getContextPath()+"/product?pid="+products.getPid()+"\"><img src=\""+products.getImage()+"\" class=\"img-responsive img-i\"\n" +
-"                                    alt=\""+products.getName()+"\"></a>\n" +
-"\n" +
-"                        </div>\n" +
-"                        <div class=\"item-price\">\n" +
-"                            <h3>"+products.getName()+"</h3>\n" +
-"                            <p>"+price+"&nbsp;₫</p>\n" +
-"                        </div>\n" +
-"                        <div class=\"my-btn\">\n" +
-"                            <button onclick=\"buy("+products.getId()+")\" id=\"btn-1\">Thêm vào giỏ</button>\n" +
-"                            <button id=\"btn-2\">Mua ngay</button>\n" +
-"                        </div>\n" +
-"                    </div>\n" +
-"                </div>");
+        if (amount < 8) {
+            List<Products> list = dao.getTop4Offset(amount);
+            //Init new function
+            com.cellphonestore.function.Functions f = new Functions();
+            PrintWriter out = response.getWriter();
+            for (Products products : list) {
+                //Replace int price to currency format 
+                String price = f.Currency(products.getPrice());
+                out.println("<div class=\"col-lg-3 col-md-4 col-sm-6 product\">\n"
+                        + "                    <div class=\"item-wrapper\">\n"
+                        + "                        <div class=\"item-img\">\n"
+                        + "                            <a href=\"" + request.getContextPath() + "/product?pid=" + products.getPid() + "\"><img src=\"" + products.getImage() + "\" class=\"img-responsive img-i\"\n"
+                        + "                                    alt=\"" + products.getName() + "\"></a>\n"
+                        + "\n"
+                        + "                        </div>\n"
+                        + "                        <div class=\"item-price\">\n"
+                        + "                            <h3>" + products.getName() + "</h3>\n"
+                        + "                            <p>" + price + "&nbsp;₫</p>\n"
+                        + "                        </div>\n"
+                        + "                        <div class=\"my-btn\">\n"
+                        + "                            <button onclick=\"buy(" + products.getId() + ")\" id=\"btn-1\">Thêm vào giỏ</button>\n"
+                        + "                            <button id=\"btn-2\">Mua ngay</button>\n"
+                        + "                        </div>\n"
+                        + "                    </div>\n"
+                        + "                </div>");
+            }
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

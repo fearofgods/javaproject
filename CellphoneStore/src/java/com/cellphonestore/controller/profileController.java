@@ -100,13 +100,13 @@ public class profileController extends HttpServlet {
             com.cellphonestore.function.Functions f = new Functions();
             String birthday = f.myDateFormat(birthday_raw);
             Date date = Date.valueOf(birthday);
-            System.out.println(date);
+//            System.out.println(date);
             Users a = new Users(firstname, lastname, email, phone, address, date, x.getUsername(), x.getPassword(), x.getRole());
             com.cellphonestore.dao.UserDAO dao = new UserDAO();
             dao.updateProfile(a);
             Users lg =dao.login(x.getUsername(), x.getPassword());
             session.setAttribute("user", lg);
-            System.out.println("===Done===");
+//            System.out.println("===Done===");
             request.setAttribute("message", "Cập nhật thành công!");
             request.getRequestDispatcher("profile.jsp").forward(request, response);
         } catch (IOException e) {

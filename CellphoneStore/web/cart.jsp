@@ -55,12 +55,12 @@ and open the template in the editor.
                             <td><img id="img-items" src="${i.products.image}" class="img-responsive" alt=""></td>
                             <td>&nbsp;${i.products.name} </td>
                             <td>Xanh - 256GB </td>
-                            <td id="item-price" class="i-price">${i.price}</td>
-                            <td><div><input type="submit" value="-" class="qty-btn" href = "<c:url value="/qtyprocess?num=-1&id=${i.products.id}"/>"><input type="text" value="${i.quantity}" name="qty" class="qty-in" readonly><input type="submit" value="+" class="qty-btn" href = "<c:url value="/qtyprocess?num=+1&id=${i.products.id}"/>"></div></td>
-                            <td id="total-item-price" class="i-price">${i.price*i.quantity}</td>
-                            <td><a href="#">Xóa</a></td>
+                            <td id="item-price" class="i-price">${i.products.price}</td>
+                            <td><div><a href = "<c:url value="/qtyprocess?num=-1&id=${i.products.id}"/>"><input type="submit" value="-" class="qty-btn"></a><input type="text" value="${i.quantity}" name="qty" class="qty-in" readonly><a href = "<c:url value="/qtyprocess?num=1&id=${i.products.id}"/>"><input type="submit" value="+" class="qty-btn"></a></div></td>
+                            <td id="total-item-price" class="i-price">${i.products.price*i.quantity}</td>
+                            <td><a href="<c:url value="/qtyprocess?num=0&id=${i.products.id}"/>">Xóa</a></td>
                         </tr>
-                    </c:forEach>
+                    </c:forEach> 
 
             </table>
             <div class="payment">
