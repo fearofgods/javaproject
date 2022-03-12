@@ -76,15 +76,17 @@ public class atcController extends HttpServlet {
         }
         String num=request.getParameter("num");
         String id=request.getParameter("id");
+        String color = request.getParameter("color-choice");
+        String storage = request.getParameter("storage-choice");
         if (element.isEmpty()) {
-            element=id+":"+num;
+            element=id+":"+num+":"+color+":"+storage;
         } else {
-            element=element+","+id+":"+num;
+            element=element+","+id+":"+num+":"+color+":"+storage;
         }
         Cookie c=new Cookie("cart", element);
         c.setMaxAge(2*24*60*60);
         response.addCookie(c);
-        response.sendRedirect(request.getContextPath());
+        response.sendRedirect(request.getContextPath()+"/cart");
     }
 
     /**

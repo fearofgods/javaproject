@@ -12,17 +12,18 @@ package com.cellphonestore.model;
 public class Item {
 
     private Products products;
+    private Color color;
+    private Storage storage;
     private int quantity;
-    private int price;
-//    private String description;
 
     public Item() {
     }
 
-    public Item(Products products, int quantity, int price) {
+    public Item(Products products, Color color, Storage storage, int quantity) {
         this.products = products;
+        this.color = color;
+        this.storage = storage;
         this.quantity = quantity;
-        this.price = price;
     }
 
     public Products getProducts() {
@@ -33,6 +34,22 @@ public class Item {
         this.products = products;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -41,13 +58,15 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public int getPrice() {
-        return price;
+    @Override
+    public String toString() {
+        return "Item{" + "products=" + products + ", color=" + color + ", storage=" + storage + ", quantity=" + quantity + '}';
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+    
 
+    
+
+    
     
 }

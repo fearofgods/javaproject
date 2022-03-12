@@ -43,6 +43,38 @@ public class ProductDAO {
         return list;
     }
 
+    public List<Color> getAllColor(){
+        List<Color> list = new ArrayList<>();
+        String query = "Select * from ColorDetails";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                list.add(new Color(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            }
+        } catch (Exception e) {
+            System.out.println("ProductDAO_getAllColor_Error: "+e);
+        }
+        return list;
+    }
+    
+    public List<Storage> getAllStorage(){
+        List<Storage> list = new ArrayList<>();
+        String query = "Select * from StorageDetails";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                list.add(new Storage(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            }
+        } catch (Exception e) {
+            System.out.println("ProductDAO_getAllStorage_Error: "+e);
+        }
+        return list;
+    }
+    
     public List<Products> getTop4Offset(int amount) {
         List<Products> listTop4 = new ArrayList<>();
         String query = "Select * from Products order by id desc offset ? rows fetch next 4 rows only";
@@ -143,7 +175,7 @@ public class ProductDAO {
 
     public List<Color> getColorById(String id) {
         List<Color> color = new ArrayList<>();
-        String query = "Select * from ColorDetails where pid = ?";
+        String query = "Select * from ColorDetails where pid = ? order by id asc";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -158,9 +190,41 @@ public class ProductDAO {
         return color;
     }
 
+    public Color getColorByCid(int id){
+        String query = "Select * from ColorDetails where id = ? order by id asc";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Color(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
+        } catch (Exception e) {
+            System.out.println("ProductDAO_getColorByCid_Error: "+e);
+        }
+        return null;
+    }
+    
+    public Storage getStorageBySid(int id){
+        String query = "Select * from StorageDetails where id = ? order by id asc";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new Storage(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
+        } catch (Exception e) {
+            System.out.println("ProductDAO_getStorageBySid_Error: "+e);
+        }
+        return null;
+    }
+    
     public List<Storage> getStorageById(String id) {
         List<Storage> storage = new ArrayList<>();
-        String query = "Select * from StorageDetails where pid = ?";
+        String query = "Select * from StorageDetails where pid = ? order by id asc";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
             ps = conn.prepareStatement(query);

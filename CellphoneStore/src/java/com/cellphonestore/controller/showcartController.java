@@ -7,7 +7,10 @@ package com.cellphonestore.controller;
 
 import com.cellphonestore.dao.ProductDAO;
 import com.cellphonestore.model.Cart;
+import com.cellphonestore.model.Color;
+import com.cellphonestore.model.Item;
 import com.cellphonestore.model.Products;
+import com.cellphonestore.model.Storage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -65,6 +68,8 @@ public class showcartController extends HttpServlet {
             throws ServletException, IOException {
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
         List<Products> list = dao.getAll();
+        List<Color> clist = dao.getAllColor();
+        List<Storage> slist = dao.getAllStorage();
         Cookie arr[] = request.getCookies();
         String element = "";
         if (arr!=null) {
@@ -74,7 +79,10 @@ public class showcartController extends HttpServlet {
                 }
             }
         }
-        Cart cart = new Cart(element, list);
+        Cart cart = new Cart(element, list, clist, slist);
+//        for (Item i : cart.getItems()) {
+//            System.out.println(i.getColor().getColor());
+//        }
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }

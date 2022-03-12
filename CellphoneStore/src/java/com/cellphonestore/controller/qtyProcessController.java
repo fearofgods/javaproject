@@ -7,8 +7,10 @@ package com.cellphonestore.controller;
 
 import com.cellphonestore.dao.ProductDAO;
 import com.cellphonestore.model.Cart;
+import com.cellphonestore.model.Color;
 import com.cellphonestore.model.Item;
 import com.cellphonestore.model.Products;
+import com.cellphonestore.model.Storage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -67,9 +69,12 @@ public class qtyProcessController extends HttpServlet {
         Cookie arr[] = request.getCookies();
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
         List<Products> list = dao.getAll();
+        List<Color> clist = dao.getAllColor();
+        List<Storage> slist = dao.getAllStorage();
         String id_raw = request.getParameter("id");
         String num_raw = request.getParameter("num");
-//        String action = request.getParameter("action");
+        String cid_raw = request.getParameter("cid"); //Cid: color id
+        String sid_raw = request.getParameter("sid"); //Sid: storage id
         String element = "";
 
         if (arr != null) {
@@ -81,41 +86,46 @@ public class qtyProcessController extends HttpServlet {
                 }
             }
         }
-        
-        Cart cart = new Cart(element, list);        
-        int id,num;
+
+        Cart cart = new Cart(element, list, clist, slist);
+        int id, num, cid, sid; //cid: Color id, sid: Storage id
         try {
             id = Integer.parseInt(id_raw);
             num = Integer.parseInt(num_raw);
+            cid = Integer.parseInt(cid_raw);
+            sid = Integer.parseInt(sid_raw);
             Products p = dao.getProductById2(id);
+            Color c = dao.getColorByCid(cid);
+            Storage s = dao.getStorageBySid(sid);
             int store = p.getAmount();
-            
-            if (num == -1 && cart.getQuantityById(id)<=1) {
-                
-                cart.removeItem(id);
-            } else if(num == 0){
-                cart.removeItem(id);
-            }else {
-                if (num == 1 && cart.getQuantityById(id)>=store) {
+
+            if (num == -1 && cart.getQuantityById(id, cid, sid) <= 1) {
+
+                cart.removeItem(id, cid, sid);
+            } else if (num == 0) {
+                cart.removeItem(id, cid, sid);
+            } else {
+                if (num == 1 && cart.getQuantityById(id, cid, sid) >= store) {
                     num = 0;
                 }
-                int price = p.getPrice()*2;
-                Item item = new Item(p, num, price);
+//                int qty = p.getPrice() * 2;
+                Item item = new Item(p, c, s, num);
                 cart.addItem(item);
             }
-            
-        } catch (Exception e) {
+
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + e);
         }
         List<Item> items = cart.getItems();
         element = "";
-        if (items.size()>0) {
-            element=items.get(0).getProducts().getId()+":"+items.get(0).getQuantity();
+        if (items.size() > 0) {
+            element = items.get(0).getProducts().getId() + ":" + items.get(0).getQuantity() + ":" + items.get(0).getColor().getId()+":"+items.get(0).getStorage().getId();
             for (int i = 1; i < items.size(); i++) {
-                element+=","+items.get(i).getProducts().getId()+":"+items.get(i).getQuantity();
+                element += "," + items.get(i).getProducts().getId() + ":" + items.get(i).getQuantity() + ":" + items.get(i).getColor().getId()+":"+items.get(i).getStorage().getId();
             }
         }
-        Cookie c = new Cookie("cart",element);
-        c.setMaxAge(2*24*60*60);
+        Cookie c = new Cookie("cart", element);
+        c.setMaxAge(2 * 24 * 60 * 60);
         response.addCookie(c);
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
