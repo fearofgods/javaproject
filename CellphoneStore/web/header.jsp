@@ -34,6 +34,7 @@
                             <a href="<c:url value="/admin-home"/>">Trang quản lí</a>
                         </c:if>
                         <a href="<c:url value="/profile"/>">Thông tin tài khoản</a>
+                        <a href="<c:url value="/purchase"/>">Đơn hàng</a>
                         <a href="<c:url value="/logout"/>">Đăng xuất</a>
                     </div>
                 </div>

@@ -46,37 +46,38 @@ and open the template in the editor.
                     </tr>
                 </thead>
                 <tbody>
-                    <c:choose>
-                        <c:when test="${cart.items != null}">
-                            <c:set var="c" value="${cart}"/>
-                            <c:set var="id" value="0"/>
-                            <c:forEach items="${c.items}" var="i">
-                                <c:set var="id" value="${id+1}"/>
-                                <tr>
-                                    <td scope="row">${id}</td>
-                                    <td><img id="img-items" src="${i.products.image}" class="img-responsive" alt=""></td>
-                                    <td>&nbsp;${i.products.name} </td>
-                                    <td>${i.color.color} - ${i.storage.storage} </td>
-                                    <td id="item-price" class="i-price">${i.products.price}</td>
-                                    <td><div><a href = "<c:url value="/qtyprocess?num=-1&id=${i.products.id}&cid=${i.color.id}&sid=${i.storage.id}"/>"><input type="button" value="-" class="qty-btn"></a><input type="text" value="${i.quantity}" name="qty" class="qty-in" readonly><a href = "<c:url value="/qtyprocess?num=1&id=${i.products.id}&cid=${i.color.id}&sid=${i.storage.id}"/>"><input type="button" value="+" class="qty-btn"></a></div></td>
-                                    <td id="total-item-price" class="i-price">${i.products.price*i.quantity}</td>
-                                    <td><a href="<c:url value="/qtyprocess?num=0&id=${i.products.id}&cid=${i.color.id}&sid=${i.storage.id}"/>">Xóa</a></td>
-                                </tr>
-                            </c:forEach> 
-                        </c:when>
-                        <c:otherwise>
-                            <div class="col-12">
-                                <div class="content">
-                                    <h1>Không có sản phẩm nào trong giỏ hàng</h1>
-                                </div>
-                            </div> 
-                        </c:otherwise>
-                </c:choose>
+                    <c:if test="${cart != null}">
+                        <c:set var="c" value="${cart}"/>
+                        <c:set var="id" value="0"/>
+                        <c:forEach items="${c.items}" var="i">
+                            <c:set var="id" value="${id+1}"/>
+                            <tr>
+                                <td scope="row">${id}</td>
+                                <td><img id="img-items" src="${i.products.image}" class="img-responsive" alt=""></td>
+                                <td>&nbsp;${i.products.name} </td>
+                                <td>${i.color.color} - ${i.storage.storage} </td>
+                                <td id="item-price" class="i-price">${i.products.price}</td>
+                                <td><div><a href = "<c:url value="/qtyprocess?num=-1&id=${i.products.id}&cid=${i.color.id}&sid=${i.storage.id}"/>"><input type="button" value="-" class="qty-btn"></a><input type="text" value="${i.quantity}" name="qty" class="qty-in" readonly><a href = "<c:url value="/qtyprocess?num=1&id=${i.products.id}&cid=${i.color.id}&sid=${i.storage.id}"/>"><input type="button" value="+" class="qty-btn"></a></div></td>
+                                <td id="total-item-price" class="i-price">${i.products.price*i.quantity}</td>
+                                <td><a href="<c:url value="/qtyprocess?num=0&id=${i.products.id}&cid=${i.color.id}&sid=${i.storage.id}"/>">Xóa</a></td>
+                            </tr>
+                        </c:forEach> 
+                    </c:if>
+                    <c:if test="${cart == null}">
+                        <div class="col-12">
+                            <div class="content">
+                                <h1>Không có sản phẩm nào trong giỏ hàng</h1>
+                            </div>
+                        </div> 
+                    </c:if>
+                
 
             </table>
             <div class="payment">
                 <div class="price"><span class="price-title">Tổng giá: </span><span class="price-total i-price">${c.totalMoney}</span></div>
-                <div class="confirm"><button id="submit">Thanh toán</button></div>
+                <div class="confirm">
+                    <a href="<c:url value="/payment"/>" id="submit"><input type="button" value="Thanh toán" ></a>
+                </div>
             </div>
 
         </div>

@@ -7,16 +7,22 @@
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/profileController.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/showcartController.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/atcController.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/web/js/index.js</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/loadtop4productsoffset.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Item.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/js/index.js</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Color.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Storage.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Products.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Item.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/web/profile.jsp</file>
             <file>file:/E:/test/javaproject/CellphoneStore/web/js/products.js</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/PaymentController.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/web/products.jsp</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Cart.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/payment.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/dao/ProductDAO.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/qtyProcessController.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/web/cart.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/ProductDetails.java</file>
         </group>
     </open-files>
 </project-private>
