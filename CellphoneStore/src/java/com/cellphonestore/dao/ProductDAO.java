@@ -8,6 +8,8 @@ package com.cellphonestore.dao;
 import com.cellphonestore.model.Cart;
 import com.cellphonestore.model.Color;
 import com.cellphonestore.model.Item;
+import com.cellphonestore.model.OrderDetails;
+import com.cellphonestore.model.Orders;
 import com.cellphonestore.model.ProductDetails;
 import com.cellphonestore.model.Products;
 import com.cellphonestore.model.Storage;
@@ -15,7 +17,6 @@ import com.cellphonestore.model.Users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,11 +98,11 @@ public class ProductDAO {
 
     public List<Products> paging(int check) {
         List<Products> paging = new ArrayList<>();
-        String query = "Select * from Products order by id desc offset ? rows fetch next 4 rows only";
+        String query = "Select * from Products order by id desc offset ? rows fetch next 8 rows only";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
             ps = conn.prepareStatement(query);
-            ps.setInt(1, (check - 1) * 4);
+            ps.setInt(1, (check - 1) * 8);
             rs = ps.executeQuery();
             while (rs.next()) {
                 paging.add(new Products(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getInt(8)));
@@ -296,6 +297,43 @@ public class ProductDAO {
         return list;
     }
 
+    public List<Orders> getOrderByUname(String uname) {
+        List<Orders> list = new ArrayList<>();
+        String query = "Select * from Orders where uname = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, uname);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Orders(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+            System.out.println("ProductDAO_getOrderByUname_Error: " + e);
+        }
+        return list;
+    }
+
+    public List<OrderDetails> getOrderDetailsById(int id) {
+        List<OrderDetails> list = new ArrayList<>();
+//        List<Products> list2 = new ArrayList<>();
+        String query = "Select * from OrderDetails where oid = ?";
+        try {
+            Connection conn1 = new com.cellphonestore.context.DBContext().getConnection();
+            PreparedStatement ps1 = conn1.prepareStatement(query);
+            ps1.setInt(1, id);
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                String pid = rs1.getString(2);
+                Products products = getProductById(pid);
+                list.add(new OrderDetails(rs1.getInt(1), products, rs1.getInt(3), rs1.getNString(4), rs1.getNString(5), rs1.getInt(6), rs1.getInt(7), rs1.getString(8), rs1.getNString(9)));
+            }
+        } catch (Exception e) {
+            System.out.println("ProductDAO_getOrderDetailsById_Error: " + e);
+        }
+        return list;
+    }
+
 //    Add function
     public Products addProduct(Products products) {
         String query = "INSERT INTO Products(pid,cid,[name],[image],price,[description],[amount])\n"
@@ -377,7 +415,7 @@ public class ProductDAO {
         try {
             //Add order
             Connection conn1 = new com.cellphonestore.context.DBContext().getConnection();
-            PreparedStatement ps1 = conn.prepareStatement(sql1);
+            PreparedStatement ps1 = conn1.prepareStatement(sql1);
             ps1.setString(1, a.getUsername());
             ps1.setInt(2, cart.getTotalMoney());
             ps1.executeUpdate();
@@ -415,8 +453,127 @@ public class ProductDAO {
                 ps4.executeUpdate();
             }
         } catch (Exception e) {
-            System.out.println("ProductDAO_addOrder_Error: "+e);
+            System.out.println("ProductDAO_addOrder_Error: " + e);
         }
+    }
+
+    //Select for admin
+    public int maxOrder() {
+        String query = "Select Max(total) as total from Orders ";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int total = rs.getInt(1);
+                return total;
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public int totalFinance() {
+        String query = "Select Sum(total) as total from Orders";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int total = rs.getInt(1);
+                return total;
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public String bestSell() {
+        String query = "Select top 1 [name] , sum(quantity) as total from OrderDetails as od, Products as p\n"
+                + "where od.pid = p.pid\n"
+                + "group by p.name\n"
+                + "order by sum(quantity) desc";
+
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String best = rs.getString(1);
+                int quantity = rs.getInt(2);
+                return best + " (" + quantity + ")";
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public List<Products> bestSellTop4() {
+        List<Products> list = new ArrayList<>();
+        String query = "Select top 4 p.id, p.pid, p.cid, p.name, p.image, p.price, p.description, p.amount from OrderDetails as od, Products as p\n"
+                + "where od.pid = p.pid\n"
+                + "group by p.id, p.pid, p.cid, p.name, p.image, p.price, p.description, p.amount\n"
+                + "order by sum(quantity) desc";
+
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Products(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getInt(8)));
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return list;
+    }
+
+    public List<Orders> newOrder() {
+        String query = "select top 3 * from Orders order by id desc ";
+        List<Orders> list = new ArrayList<>();
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Orders(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+            System.out.println("ProductDAO_newOrder_Error: " + e);
+        }
+        return list;
+    }
+
+    public List<Orders> getAllOrders() {
+        String query = "Select * from Orders";
+        List<Orders> list = new ArrayList<>();
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Orders(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Orders> listOrders(int check) {
+        String query = "Select * from Orders order by id desc offset ? rows fetch next 10 rows only";
+        List<Orders> list = new ArrayList<>();
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, (check - 1) * 10);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Orders(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 
 //    Delete function
@@ -492,13 +649,99 @@ public class ProductDAO {
         }
     }
 
+//Update function
+    public void updateStatus(String status, int id) {
+        String query = "Update OrderDetails set status = ? where oid = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, status);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
+    
+    public void updateProduct(Products p){
+        String query = "update Products set cid = ?, name = ? , image = ?, price = ?, description = ?, amount = ? where pid = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, p.getCid());
+            ps.setString(2, p.getName());
+            ps.setString(3, p.getImage());
+            ps.setInt(4, p.getPrice());
+            ps.setString(5, p.getDescription());
+            ps.setInt(6, p.getAmount());
+            ps.setString(7, p.getPid());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
+
+    public void updateProductDetails(ProductDetails pd){
+        String query = "update ProductDetails set screen = ?, os = ?, rearcam = ?, frontcam = ?, soc = ?, ram = ?, sim = ?, battery = ? where pid = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setNString(1, pd.getScreen());
+            ps.setNString(2, pd.getOs());
+            ps.setNString(3, pd.getRearcam());
+            ps.setNString(4, pd.getFrontcam());
+            ps.setNString(5, pd.getSoc());
+            ps.setNString(6, pd.getRam());
+            ps.setNString(7, pd.getSim());
+            ps.setNString(8, pd.getBattery());
+            ps.setNString(9, pd.getPid());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
+    
+    public void updateColor(Color c){
+        String query = "update ColorDetails set color = ? where id = ? and pid = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setNString(1, c.getColor());
+            ps.setInt(2, c.getId());
+            ps.setString(3, c.getPid());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
+    
+    public void updateStorage(Storage s){
+        String query = "update StorageDetails set storage = ? where id = ? and pid = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setNString(1, s.getStorage());
+            ps.setInt(2, s.getId());
+            ps.setString(3, s.getPid());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
+    
     public static void main(String[] args) {
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
-        Products a = dao.getProductById("OP_FIND3PRO");
-        List<Storage> st = dao.getStorageById("AP_13PRO");
-        List<Products> pd = dao.paging(1);
-        for (Products storage : pd) {
-            System.out.println(storage.getName());
+//        Products a = dao.getProductById("OP_FIND3PRO");
+        int id = 18;
+        List<Products> st = dao.bestSellTop4();
+//        for (Orders orders : st) {
+//            System.out.println(orders.getUname());
+//        }
+//        List<Products> pd = dao.paging(1);
+//        System.out.println(dao.getProductById("AP_13PRO"));
+//        System.out.println(st.size());
+        for (Products or : st) {
+            System.out.println(or.getName());
         }
 
 //        for (Products products : pd) {

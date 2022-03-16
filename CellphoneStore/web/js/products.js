@@ -57,6 +57,11 @@ function buy(id) {
             var storage = storage_col[i].value;
         }
     }
+    
+    if (color === undefined || storage === undefined ) {
+        color = 1;
+        storage = 1;
+    } 
 //    console.log(color+" "+storage);
     window.location = "atc?id=" + id + "&num=" + 1 + "&color-choice=" + color + "&storage-choice=" + storage;
 }

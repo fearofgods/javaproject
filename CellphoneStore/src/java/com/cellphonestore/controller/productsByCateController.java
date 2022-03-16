@@ -89,8 +89,8 @@ public class productsByCateController extends HttpServlet {
             } else {
                 List<Products> plist = dao.getAll();
                 int count = plist.size();
-                int lastPage = count/4;
-                if (count % 4 != 0) {
+                int lastPage = count/8;
+                if (count % 8 != 0) {
                     lastPage++;
                 }
                 List<Products> list = dao.paging(index);

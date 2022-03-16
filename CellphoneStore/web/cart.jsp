@@ -12,6 +12,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -32,21 +33,22 @@ and open the template in the editor.
 
         <!-- Info -->
         <div class="container">
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col" colspan="2">Sản phẩm</th>
-                        <th scope="col">Phân loại</th>
-                        <th scope="col">Đơn giá</th>
-                        <th scope="col">Số lượng</th>
-                        <th scope="col">Số tiền</th>
-                        <th scope="col">Thao tác</th>
+            <c:if test="${size == 'ds'}">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" colspan="2">Sản phẩm</th>
+                            <th scope="col">Phân loại</th>
+                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Số tiền</th>
+                            <th scope="col">Thao tác</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:if test="${cart != null}">
+                        </tr>
+                    </thead>
+                    <tbody>
+
                         <c:set var="c" value="${cart}"/>
                         <c:set var="id" value="0"/>
                         <c:forEach items="${c.items}" var="i">
@@ -62,23 +64,28 @@ and open the template in the editor.
                                 <td><a href="<c:url value="/qtyprocess?num=0&id=${i.products.id}&cid=${i.color.id}&sid=${i.storage.id}"/>">Xóa</a></td>
                             </tr>
                         </c:forEach> 
-                    </c:if>
-                    <c:if test="${cart == null}">
-                        <div class="col-12">
-                            <div class="content">
-                                <h1>Không có sản phẩm nào trong giỏ hàng</h1>
-                            </div>
-                        </div> 
-                    </c:if>
-                
 
-            </table>
-            <div class="payment">
-                <div class="price"><span class="price-title">Tổng giá: </span><span class="price-total i-price">${c.totalMoney}</span></div>
-                <div class="confirm">
-                    <a href="<c:url value="/payment"/>" id="submit"><input type="button" value="Thanh toán" ></a>
+
+
+
+                </table>
+            </c:if>
+            <c:if test="${size == 'hd'}">
+                <div class="col-12">
+                    <div class="content">
+                        <h1>Không có sản phẩm nào trong giỏ hàng</h1>
+                    </div>
+                </div> 
+            </c:if>
+            <c:if test="${size == 'ds'}">
+                <div class="payment">
+                    <div class="price"><span class="price-title">Tổng giá: </span><span class="price-total i-price">${c.totalMoney}</span></div>
+                    <div class="confirm">
+                        <a href="<c:url value="/payment"/>" id="submit"><input type="button" value="Thanh toán" ></a>
+                    </div>
                 </div>
-            </div>
+            </c:if>
+
 
         </div>
         <!-- Footer -->

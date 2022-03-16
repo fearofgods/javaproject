@@ -133,12 +133,12 @@ public class adminAddnewController extends HttpServlet {
             com.cellphonestore.model.ProductDetails productdetail = new ProductDetails(cid, pid, screen, os, rearcam, frontcam, soc, ram, sim, battery);
             pdao.addPDetail(productdetail);
             for (String s : storagelist) {
-                com.cellphonestore.model.Storage st = new Storage(cid, pid, s);
+                Storage st = new Storage(cid, pid, s);
                 pdao.addStorage(st);
             }
             
             for (String c : colorlist) {
-                com.cellphonestore.model.Color cl = new Color(cid, pid, c);
+                Color cl = new Color(cid, pid, c);
                 pdao.addColor(cl);
             }
             response.sendRedirect(request.getContextPath()+"/admin-addnew");

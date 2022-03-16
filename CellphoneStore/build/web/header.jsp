@@ -67,6 +67,7 @@
                                 <a class="dropdown-item" role="presentation" href="<c:url value="/productbyprice?min=4&max=5"/>">Từ 4 - 5 triệu</a>
                                 <a class="dropdown-item" role="presentation" href="<c:url value="/productbyprice?min=5&max=10"/>">Từ 5 - 10 triệu</a>
                                 <a class="dropdown-item" role="presentation" href="<c:url value="/productbyprice?min=10&max=30"/>">Từ 10 - 30 triệu</a>
+                                <a class="dropdown-item" role="presentation" href="<c:url value="/productbyprice?min=30&max=100"/>">Trên 30 triệu</a>
                             </div>
                         </li> 
                         <li class="nav-component dropdown">

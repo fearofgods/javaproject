@@ -6,7 +6,8 @@
 package com.cellphonestore.controller;
 
 import com.cellphonestore.dao.ProductDAO;
-import com.cellphonestore.model.Orders;
+import com.cellphonestore.function.Functions;
+import com.cellphonestore.model.Products;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hongd
  */
-@WebServlet(name = "adminhome", urlPatterns = {"/admin-home"})
-public class adminhome extends HttpServlet {
+@WebServlet(name = "LoadBestSell", urlPatterns = {"/bestsell"})
+public class LoadBestSell extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +36,25 @@ public class adminhome extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet adminhome</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet adminhome at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
+        com.cellphonestore.function.Functions f = new Functions();
+        List<Products> list = dao.bestSellTop4();
+        PrintWriter out = response.getWriter();
+        for (Products products : list) {
+            System.out.println(products.getName());
+            String price = f.Currency(products.getPrice());
+            out.println("<div class=\"col-lg-3 col-md-4 col-sm-6\">\n" +
+"                        <div class=\"item-top\">\n" +
+"                            <div class=\"item-top-img\">\n" +
+"                                <a href=\"" + request.getContextPath() + "/product?pid=" + products.getPid() + "\"><img src=\"" + products.getImage() + "\" class=\"img-responsive\"\n" +
+"                                        alt=\"" + products.getName() + "\"></a>\n" +
+"                            </div>\n" +
+"                            <div class=\"item-top-title\">\n" +
+"                                <h2>" + products.getName() + "</h2>\n" +
+"                                <p>"+ price +"</p>\n" +
+"                            </div>\n" +
+"                        </div>\n" +
+"                    </div>");
         }
     }
 
@@ -61,19 +70,7 @@ public class adminhome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
-        List<Orders> list = dao.newOrder();
-        
-        int maxPrice = dao.maxOrder();
-        int totalFinance = dao.totalFinance();
-        String bestSell = dao.bestSell();
-//        System.out.println(list.size());
-        
-        request.setAttribute("maxPrice", maxPrice);
-        request.setAttribute("totalFinance", totalFinance);
-        request.setAttribute("bestSell", bestSell);
-        request.setAttribute("newOrder", list);
-        request.getRequestDispatcher("admin-home.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

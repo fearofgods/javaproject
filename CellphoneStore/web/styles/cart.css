@@ -125,6 +125,15 @@ h5{
     width: 100%;
 }
 
+h6{
+    font-size: 30px;
+}
+
+.content{
+    margin-bottom: 20px;
+}
+
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;

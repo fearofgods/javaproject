@@ -66,8 +66,7 @@ h1{
     border: none;
     background-color: rgb(255, 145, 0);
     color: white;
-    float: left;
-    width: 45%;
+    width: 90%;
     transition: transform .1s;
     height: 25px;
     border-radius: 20px;
@@ -76,25 +75,7 @@ h1{
 }
 
 #btn-1:hover{
-    transform: scale(1.1);
-}
-
-#btn-2{
-    border: none;
-    background-color: rgb(168, 5, 5);
-    color: white;
-    float: right;
-    width: 45%;
-    transition: transform .1s;
-    height: 25px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: bold;
-    
-}
-
-#btn-2:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .title{

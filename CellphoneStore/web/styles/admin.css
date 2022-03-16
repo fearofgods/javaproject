@@ -122,7 +122,7 @@ body{
 }
 
 .my-modal{
-  margin-top: 5 rem;
+  margin-top: 5rem;
   background-color: #fed100;
   height: 100px;
   border-radius: 0.5rem;
@@ -140,7 +140,7 @@ body{
 
 .content{
     top: 4rem;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
 .item-img{

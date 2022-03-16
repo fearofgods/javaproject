@@ -5,9 +5,7 @@
  */
 package com.cellphonestore.controller;
 
-import com.cellphonestore.dao.CategoryDAO;
 import com.cellphonestore.dao.ProductDAO;
-import com.cellphonestore.model.Category;
 import com.cellphonestore.model.Products;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +40,7 @@ public class adminManageController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet adminManageController</title>");            
+            out.println("<title>Servlet adminManageController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet adminManageController at " + request.getContextPath() + "</h1>");
@@ -64,12 +62,26 @@ public class adminManageController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         com.cellphonestore.dao.ProductDAO pdao = new ProductDAO();
-        com.cellphonestore.dao.CategoryDAO cdao = new CategoryDAO();
-        List<Products> listp = pdao.getAll();
-        request.setAttribute("plist", listp);
-        List<Category> listc = cdao.getAll();
-        request.setAttribute("clist", listc);
-        request.getRequestDispatcher("admin-manage.jsp").forward(request, response);
+        List<Products> plist = pdao.getAll();
+        String index_raw = request.getParameter("indexP");
+        if (index_raw == null) {
+            index_raw = "1";
+        }
+        try {
+            int index = Integer.parseInt(index_raw);
+            int count = plist.size();
+            int lastPage = count / 8;
+            if (count % 8 != 0) {
+                lastPage++;
+            }
+            List<Products> list = pdao.paging(index);
+            if (list != null && !list.isEmpty()) {
+                request.setAttribute("plist", list);
+                request.setAttribute("lastP", lastPage);
+                request.getRequestDispatcher("admin-manage.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -85,7 +97,7 @@ public class adminManageController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

@@ -61,10 +61,6 @@ public class loadtop4productsoffset extends HttpServlet {
                         + "                            <h3>" + products.getName() + "</h3>\n"
                         + "                            <p>" + price + "&nbsp;₫</p>\n"
                         + "                        </div>\n"
-                        + "                        <div class=\"my-btn\">\n"
-                        + "                            <button onclick=\"buy(" + products.getId() + ")\" id=\"btn-1\">Thêm vào giỏ</button>\n"
-                        + "                            <button id=\"btn-2\">Mua ngay</button>\n"
-                        + "                        </div>\n"
                         + "                    </div>\n"
                         + "                </div>");
             }

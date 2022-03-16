@@ -3,26 +3,55 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/loadtop4products.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/profileController.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/showcartController.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/head-sidenav.jsp</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/atcController.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/loadtop4productsoffset.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/web/js/index.js</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Color.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Storage.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Products.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Item.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/web/profile.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/PurchaseController.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/productsByCateController.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/web/js/products.js</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/PaymentController.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/web/products.jsp</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Cart.java</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/web/payment.jsp</file>
-            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/dao/ProductDAO.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/productByPrice.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/js/cateProducts.js</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/AdminOrderDetailsController.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/searchController.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Orders.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/loadtop4products.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/js/cart.js</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/showcartController.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/admin-manage.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/function/Functions.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/AdminUpdateProduct.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/PurchaseDetailController.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/admin-order.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/admin-home.jsp</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/qtyProcessController.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/web/cart.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/purchase.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/adminManageController.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/loadtop4productsoffset.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/index.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/js/admin.js</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/admin-productsdetails.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Products.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/admin-insideproduct.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/header.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/LoadBestSell.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/products.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/purchasedetails.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/styles/cart.css</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/admin-orderdetail.html</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/styles/products.css</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/AdminInsideProduct.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/dao/ProductDAO.java</file>
             <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/ProductDetails.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/js/header.js</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/model/Category.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/profile.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/searchresult.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/adminhome.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/payment.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/src/java/com/cellphonestore/controller/AdminOrderController.java</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/admin-addnew.jsp</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/styles/admin.css</file>
+            <file>file:/E:/test/javaproject/CellphoneStore/web/admin-orderdetails.jsp</file>
         </group>
     </open-files>
 </project-private>

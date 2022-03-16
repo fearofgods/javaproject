@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : index
     Created on : Feb 4, 2022, 10:30:29 PM
     Author     : hongd
@@ -25,84 +25,16 @@ and open the template in the editor.
         <jsp:include page="header.jsp" />
         <!-- Info -->
         <div class="container">
-            <div class="banner col-md-12 col-12 col-sm-12">
-        </div>
+
             <!-- Slider top sell -->
         <div class="top-list col-md-12 col-12 col-sm-12">
-            <div class="row">
+            <div class="row" id="best">
                 <div class="col-md-12 col-sm-12 block-header">
                     <h1>Top bán chạy</h1>
-                </div>
-
-                <div class="owl-carousel col-md-12 col-sm-12">
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="item-top">
-                            <div class="item-top-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro-max.jpg" class="img-responsive"
-                                        alt=""></a>
-                            </div>
-                            <div class="item-top-title">
-                                <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="item-top">
-                            <div class="item-top-img">
-                                <a href="#"><img src="img/items/apple-iphone-13-pro.jpg" class="img-responsive"
-                                        alt=""></a>
-                            </div>
-                            <div class="item-top-title">
-                                <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="item-top">
-                            <div class="item-top-img">
-                                <a href="#"><img src="img/items/samsung-galaxy-z-fold3-5g.jpg" class="img-responsive"
-                                        alt=""></a>
-                            </div>
-                            <div class="item-top-title">
-                                <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="item-top">
-                            <div class="item-top-img">
-                                <a href="#"><img src="img/items/sony-xperia-pro-i.jpg" class="img-responsive"
-                                        alt=""></a>
-                            </div>
-                            <div class="item-top-title">
-                                <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="item-top">
-                            <div class="item-top-img">
-                                <a href="#"><img src="img/items/xiaomi-redmi-note-11-pro-global.jpg"
-                                        class="img-responsive" alt=""></a>
-                            </div>
-                            <div class="item-top-title">
-                                <h2>Iphone 13 pro max 128gb</h2>
-                                <p>34.190.000đ</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="banner col-md-12 col-12 col-sm-12">
-            <h2>ADS</h2>
-        </div>
         <!-- New products -->
         <div class="default-list col-md-12 col-12 col-sm-12">
             <div class="row" id="newlist">

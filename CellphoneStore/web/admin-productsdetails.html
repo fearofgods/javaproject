@@ -58,44 +58,174 @@ and open the template in the editor.
         <a href="#"><i class="fa-solid fa-list-check"></i>&nbsp; Quản lí trang</a>
         <!-- <a href="#">Contact</a> -->
     </div>
-    
+
     <div id="main">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 content">
-                    
-                    <form action="admin-update" class="">
-                        <h1>Chi tiết</h1>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Mã sản phẩm</th>
-                                    <th scope="col">Ảnh sản phẩm</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Giá</th>
-                                    <th scope="col">Số lượng</th>
-                                    <th scope="col">Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">AP_12PRO</th>
-                                    <td><img src="img/items/apple-iphone-13-mini.jpg" class="img-responsive item-img" alt="Apple Iphone 12 PRO"></td>
-                                    <td><input type="text" value="Apple Iphone 12 PRO"></td>
-                                    <td><input type="text" value="18490000"></td>
-                                    <td><input type="text" value="50" style="width: 50px;"></td>
-                                    <td><a href="#">Sửa</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>                
+                        <h1>Chi tiết sản phẩm</h1>
+                        <p>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#info-table" role="button"
+                                aria-expanded="false" aria-controls="info-table">
+                                Thông tin sản phẩm
+                            </a>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#system-table" role="button"
+                                aria-expanded="false" aria-controls="system-table">
+                                Cấu hình sản phẩm
+                            </a>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#color-table" role="button"
+                                aria-expanded="false" aria-controls="color-table">
+                                Màu sản phẩm
+                            </a>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#storage-table" role="button"
+                                aria-expanded="false" aria-controls="storage-table">
+                                Bộ nhớ sản phẩm
+                            </a>
+                        </p>
+                        <div class="collapse" id="info-table">
+                            <h1>Thông tin sản phẩm</h1>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>#ID</td>
+                                        <td><input type="text" value="1" readonly name="id"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mã sản phẩm</td>
+                                        <td><input type="text" value="AP_12PRO" name="pid"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Danh mục sản phẩm</td>
+                                        <td><select name="cate" id="">
+                                                <option value="">Apple</option>
+                                                <option value="" selected>Samsung</option>
+                                                <option value="">Xiaomi</option>
+                                                <option value="">Oppo</option>
+                                                <option value="">Realme </option>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tên sản phẩm</td>
+                                        <td><input type="text" value="Apple Iphone 12 PRO" name="pname"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ảnh</td>
+                                        <td><input type="text" name="img"
+                                                value="https://cdn.discordapp.com/attachments/941665674273644574/941666479114420244/apple-iphone-12-pro--.jpg">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Giá tiền</td>
+                                        <td><input type="text" value="18490000" name="price"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số lượng</td>
+                                        <td><input type="text" value="50" name="qty"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mô tả sản phẩm</td>
+                                        <td><input type="text" value="Sản phẩm cao cấp do Apple sản suất" name="des"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="collapse" id="system-table">
+                            <h1>Cấu hình sản phẩm</h1>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Màn hình:</td>
+                                        <td><input type="text" value="${details.screen}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hệ điều hành:</td>
+                                        <td><input type="text" value="${details.os}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Camera sau:</td>
+                                        <td><input type="text" value="${details.rearcam}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Camera trước:</td>
+                                        <td><input type="text" value="${details.frontcam}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Chip:</td>
+                                        <td><input type="text" value="${details.soc}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>RAM:</td>
+                                        <td><input type="text" value="${details.ram}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SIM:</td>
+                                        <td><input type="text" value="${details.sim}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pin, Sạc:</td>
+                                        <td><input type="text" value="${details.battery}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="collapse" id="color-table">
+                            <h1>Màu sản phẩm</h1>
+                            <a  data-toggle="collapse" href="#addnew-color" role="button" aria-expanded="false"
+                                aria-controls="addnew-color"><i class="fa-solid fa-circle-plus"></i>Thêm mới</a>
+                            <div class="collapse" id="addnew-color">
+                                <p>Các màu ngăn cách nhau bằng dấu , </p>
+                                <input type="text" name="" id="">   
+                            </div>
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#ID</th>
+                                        <th scope="col" class="text-center">Màu</th>
+                                        <th scope="col" class="text-center">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center"><input type="text" value="Xanh"></td>
+                                        <td class="text-center"><a href="">Sửa</a> | <a href="">Xóa</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="collapse" id="storage-table">
+                            <h1>Bộ nhớ sản phẩm</h1>
+                            <a  data-toggle="collapse" href="#addnew-storage" role="button" aria-expanded="false"
+                                aria-controls="addnew-storage"><i class="fa-solid fa-circle-plus"></i>Thêm mới</a>
+                            <div class="collapse" id="addnew-storage">
+                                <p>Các bộ nhớ ngăn cách nhau bằng dấu , </p>
+                                <input type="text" name="" id="">   
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#ID</th>
+                                        <th scope="col" class="text-center">Bộ nhớ</th>
+                                        <th scope="col" class="text-center">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center"><input type="text" value="256GB"></td>
+                                        <td class="text-center"><a href="">Sửa</a> | <a href="">Xóa</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
             </div>
         </div>
     </div>
 
 
-    
+
 
 
     <!-- jQuery -->

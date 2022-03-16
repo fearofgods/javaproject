@@ -5,9 +5,7 @@
  */
 package com.cellphonestore.controller;
 
-import com.cellphonestore.dao.CategoryDAO;
 import com.cellphonestore.dao.ProductDAO;
-import com.cellphonestore.model.Category;
 import com.cellphonestore.model.Products;
 import java.io.IOException;
 import java.io.PrintWriter;

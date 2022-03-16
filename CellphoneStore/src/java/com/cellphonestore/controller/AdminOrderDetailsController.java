@@ -6,7 +6,7 @@
 package com.cellphonestore.controller;
 
 import com.cellphonestore.dao.ProductDAO;
-import com.cellphonestore.model.Orders;
+import com.cellphonestore.model.OrderDetails;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hongd
  */
-@WebServlet(name = "adminhome", urlPatterns = {"/admin-home"})
-public class adminhome extends HttpServlet {
+@WebServlet(name = "AdminOrderDetailsController", urlPatterns = {"/admin-orderdt"})
+public class AdminOrderDetailsController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class adminhome extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet adminhome</title>");            
+            out.println("<title>Servlet AdminOrderDetailsController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet adminhome at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminOrderDetailsController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,18 +62,30 @@ public class adminhome extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
-        List<Orders> list = dao.newOrder();
-        
-        int maxPrice = dao.maxOrder();
-        int totalFinance = dao.totalFinance();
-        String bestSell = dao.bestSell();
-//        System.out.println(list.size());
-        
-        request.setAttribute("maxPrice", maxPrice);
-        request.setAttribute("totalFinance", totalFinance);
-        request.setAttribute("bestSell", bestSell);
-        request.setAttribute("newOrder", list);
-        request.getRequestDispatcher("admin-home.jsp").forward(request, response);
+        String oid_raw = request.getParameter("oid");
+        String action = request.getParameter("action");
+        try {
+            int oid = Integer.parseInt(oid_raw);
+            if (action.equals("view")) {
+                List<OrderDetails> list = dao.getOrderDetailsById(oid);
+                request.setAttribute("list", list);
+                request.getRequestDispatcher("admin-order.jsp").forward(request, response);
+            } 
+            else if(action.equals("cf")){
+                dao.updateStatus("cf", oid);
+                List<OrderDetails> list = dao.getOrderDetailsById(oid);
+                request.setAttribute("list", list);
+                request.getRequestDispatcher("admin-order.jsp").forward(request, response);
+            } else{
+                dao.updateStatus("cl", oid);
+                List<OrderDetails> list = dao.getOrderDetailsById(oid);
+                request.setAttribute("list", list);
+                request.getRequestDispatcher("admin-order.jsp").forward(request, response);
+            }
+
+        } catch (IOException | NumberFormatException | ServletException e) {
+            System.out.println("PurchaseDetailController_Error: " + e);
+        }
     }
 
     /**

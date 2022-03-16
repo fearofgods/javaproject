@@ -59,100 +59,61 @@ and open the template in the editor.
         <!-- <a href="#">Contact</a> -->
     </div>
     
+    <div class="check-modal" id="check-delete-modal">
+        <div class="modal-delete-content">
+            <div class="modal-delete-header">
+                <p>Xóa</p>
+            </div>
+            <div class="modal-delete-icon">
+                <i class="fa-solid fa-question"></i>
+                <h2 id="modal-title"> </h2>
+            </div>
+            
+            <div class="modal-delete-btn">
+                <button class="modal-delete-btn-1" id="modal-delete-btn-1"><i class="fa-solid fa-check"></i>&nbsp;Đồng ý</button>
+                <button class="modal-delete-btn-2" id="modal-delete-btn-2" onclick="closeModal()"><i class="fa-solid fa-xmark"></i>&nbsp;Hủy</button>
+            </div>
+        </div>
+    </div>
     
     <div id="main">
         <div class="container-fluid">
-        
             <div class="row">
-                <div class="col-md-4">
-                    <div class="my-modal">
-                        <div class="inside-modal">
-                            <p class="modal-title">Tổng doanh thu</p>
-                            <p class="modal-info">100.000.000đ</p>
-                        </div>
+                <div class="col-12 content">
+                    <h1>Tất cả sản phẩm đơn hàng mới</h1>
+                    
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-center">#ID</th>
+                            <th scope="col" class="text-center">Tên người đặt</th>
+                            <th scope="col" class="text-center">Tổng giá trị</th>
+                            <th scope="col" class="text-center">Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-center">1</th>
+                                <td class="text-center">Phạm Dương</td>
+                                <td class="text-center">40.000.000đ</td>
+                                <td class="text-center"><a href="">Chấp nhận</a>&nbsp;|&nbsp;<a href="#" onclick="openModal('SM_S225G')">Từ chối</a>|&nbsp;<a href="#">Xem chi tiết</a></td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                    <div class="paging-wrapper">
+                        <ul class="paging">
+                            <li class="paging-items"><a href=""><i class="fa-solid fa-angle-left"></i>Quay lại</a></li>
+                            <li class="paging-items"><a href="">1</a></li>
+                            <li class="paging-items"><a href="">2</a></li>
+                            <li class="paging-items"><a href="">3</a></li>
+                            <li class="paging-items"><a href="">Tiếp<i class="fa-solid fa-angle-right"></i></a></li>
+                        </ul>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="my-modal">
-                        <div class="inside-modal">
-                            <p class="modal-title">Tổng doanh thu</p>
-                            <p class="modal-info">100.000.000đ</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="my-modal">
-                        <div class="inside-modal">
-                            <p class="modal-title">Tổng doanh thu</p>
-                            <p class="modal-info">100.000.000đ</p>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             
-            <h1>Đơn đặt hàng mới</h1>
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
-
-            <h1>Đơn hàng đã xử lí</h1>
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
         </div>
     </div>
 

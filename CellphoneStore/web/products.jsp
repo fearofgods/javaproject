@@ -73,8 +73,6 @@ and open the template in the editor.
                             </div>
                             <div class="btn">
                                 <a onclick="buy(${pd.id})"><input id="btn-1" type="button"  value="Thêm vào giỏ"/></a>
-                                <!--<button ></button>-->
-                                <button id="btn-2">Mua ngay</button>
                             </div>
                         </form>
 

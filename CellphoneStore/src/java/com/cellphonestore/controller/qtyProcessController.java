@@ -104,6 +104,7 @@ public class qtyProcessController extends HttpServlet {
                 cart.removeItem(id, cid, sid);
             } else if (num == 0) {
                 cart.removeItem(id, cid, sid);
+                
             } else {
                 if (num == 1 && cart.getQuantityById(id, cid, sid) >= store) {
                     num = 0;
@@ -116,19 +117,24 @@ public class qtyProcessController extends HttpServlet {
         } catch (NumberFormatException e) {
             System.out.println("Error: " + e);
         }
-        List<Item> items = cart.getItems();
-        element = "";
-        if (items.size() > 0) {
-            element = items.get(0).getProducts().getId() + ":" + items.get(0).getQuantity() + ":" + items.get(0).getColor().getId()+":"+items.get(0).getStorage().getId();
-            for (int i = 1; i < items.size(); i++) {
-                element += "," + items.get(i).getProducts().getId() + ":" + items.get(i).getQuantity() + ":" + items.get(i).getColor().getId()+":"+items.get(i).getStorage().getId();
+        if (num_raw.equals(1) || num_raw.equals(-1)) {
+            List<Item> items = cart.getItems();
+            element = "";
+            if (items.size() > 0) {
+                element = items.get(0).getProducts().getId() + ":" + items.get(0).getQuantity() + ":" + items.get(0).getColor().getId() + ":" + items.get(0).getStorage().getId();
+                for (int i = 1; i < items.size(); i++) {
+                    element += "," + items.get(i).getProducts().getId() + ":" + items.get(i).getQuantity() + ":" + items.get(i).getColor().getId() + ":" + items.get(i).getStorage().getId();
+                }
             }
+            Cookie c = new Cookie("cart", element);
+            c.setMaxAge(2 * 24 * 60 * 60);
+            response.addCookie(c);
+            request.setAttribute("cart", cart);
+            request.getRequestDispatcher("cart.jsp").forward(request, response);
+        }else{
+            response.sendRedirect(request.getContextPath() + "/cart");
         }
-        Cookie c = new Cookie("cart", element);
-        c.setMaxAge(2 * 24 * 60 * 60);
-        response.addCookie(c);
-        request.setAttribute("cart", cart);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+
     }
 
     /**

@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hongd
  */
-@WebServlet(name = "adminhome", urlPatterns = {"/admin-home"})
-public class adminhome extends HttpServlet {
+@WebServlet(name = "AdminOrderController", urlPatterns = {"/admin-order"})
+public class AdminOrderController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class adminhome extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet adminhome</title>");            
+            out.println("<title>Servlet AdminOrderController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet adminhome at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminOrderController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,18 +62,29 @@ public class adminhome extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
-        List<Orders> list = dao.newOrder();
-        
-        int maxPrice = dao.maxOrder();
-        int totalFinance = dao.totalFinance();
-        String bestSell = dao.bestSell();
-//        System.out.println(list.size());
-        
-        request.setAttribute("maxPrice", maxPrice);
-        request.setAttribute("totalFinance", totalFinance);
-        request.setAttribute("bestSell", bestSell);
-        request.setAttribute("newOrder", list);
-        request.getRequestDispatcher("admin-home.jsp").forward(request, response);
+        List<Orders> olist = dao.getAllOrders();
+
+        String index_raw = request.getParameter("indexP");
+        if (index_raw == null) {
+            index_raw = "1";
+        }
+        try {
+            int index = Integer.parseInt(index_raw);
+            int count = olist.size();
+            int lastPage = count / 10;
+            if (count % 10 != 0) {
+                lastPage++;
+            }
+            List<Orders> list = dao.listOrders(index);
+            if (list != null && !list.isEmpty()) {
+                request.setAttribute("olist", list);
+                request.setAttribute("lastP", lastPage);
+                request.getRequestDispatcher("admin-orderdetails.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+        }
+
+        processRequest(request, response);
     }
 
     /**

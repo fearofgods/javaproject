@@ -82,6 +82,12 @@ public class showcartController extends HttpServlet {
 //        for (Item i : cart.getItems()) {
 //            System.out.println(i.getColor().getColor());
 //        }
+        if (cart.getItems().isEmpty()) {
+            request.setAttribute("size", "hd");
+        }else{
+            request.setAttribute("size", "ds");
+        }
+        
         request.setAttribute("cart", cart);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }

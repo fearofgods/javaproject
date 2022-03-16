@@ -29,7 +29,7 @@ const collection = document.getElementsByClassName('qty-in');
 
 function addLoadEvent(func) {
     var oldonload = window.onload;
-    if (typeof window.onload != 'function') {
+    if (typeof window.onload !== 'function') {
       window.onload = func;
     } else {
       window.onload = function() {

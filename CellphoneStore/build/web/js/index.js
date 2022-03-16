@@ -1,29 +1,4 @@
-$(document).ready(function(){
-    $(".owl-carousel").owlCarousel();
-});
 
-$(".owl-carousel").owlCarousel({
-    autoplay: true,
-    autoplayhoverpause: true,
-    autoplaytimeout: 100,
-    nav: true,
-    loop: true,
-    margin: 5,
-    responsive:{
-        0 : {
-            items: 1,
-            dots: false
-        },
-        600 :{
-            items: 2,
-            dots: false
-        },
-        1000 :{
-            items: 4,
-            dots: false
-        }
-    }
-});
 
 var $maxWidthElement = $('.navbar'),
   maxWidth = $maxWidthElement.width();
@@ -84,24 +59,63 @@ $(window).on("resize", function (e) {
 function loadTop4() {
   var amount = document.getElementsByClassName("product").length;
   $.ajax({
-      type: "post",
-      url: "/cellphone/loadtop4products",
-      data: {
+    type: "post",
+    url: "/cellphone/loadtop4products",
+    data: {
       exist: amount
-      },
-      success: function (response) {
+    },
+    success: function (response) {
       var row = document.getElementById("newlist");
       row.innerHTML += response;
-      }
+    }
   });
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
+  $.ajax({
+    type: "post",
+    url: "/cellphone/bestsell",
+    success: function (response) {
+      var row = document.getElementById("best");
+      if (row !== null && row !== undefined) {
+        row.innerHTML += '<div class="owl-carousel col-md-12 col-sm-12">' + response + '</div>';
+      }
+      $(document).ready(function () {
+        $(".owl-carousel").owlCarousel();
+      });
+
+      $(".owl-carousel").owlCarousel({
+        autoplay: true,
+        autoplayhoverpause: true,
+        autoplaytimeout: 100,
+        nav: true,
+        loop: true,
+        margin: 0,
+        responsive: {
+          0: {
+            items: 1,
+            dots: false
+          },
+          600: {
+            items: 2,
+            dots: false
+          },
+          1000: {
+            items: 4,
+            dots: false
+          }
+        }
+      });
+    }
+  });
+});
+
+$(document).ready(function () {
   $.ajax({
     type: "post",
     url: "/cellphone/loadtop4product",
     success: function (response) {
-    var row = document.getElementById("newlist");
+      var row = document.getElementById("newlist");
       if (row !== null && row !== undefined) {
         row.innerHTML += response;
       }
@@ -114,7 +128,7 @@ function addLoadEvent(func) {
   if (typeof window.onload !== 'function') {
     window.onload = func;
   } else {
-    window.onload = function() {
+    window.onload = function () {
       if (oldonload) {
         oldonload();
       }
@@ -129,11 +143,11 @@ addLoadEvent(function () {
     newPrice_raw = price[i].innerHTML;
     newPrice = parseInt(newPrice_raw, 10);
     newPrice = newPrice.toLocaleString('vn-VN');
-    newPrice = newPrice.replaceAll(',','.').concat('đ');
+    newPrice = newPrice.replaceAll(',', '.').concat('đ');
     price[i].innerHTML = newPrice;
   }
 });
 
 function buy(id) {
-  window.location= "atc?id="+id+"&num="+1;
+  window.location = "atc?id=" + id + "&num=" + 1;
 }

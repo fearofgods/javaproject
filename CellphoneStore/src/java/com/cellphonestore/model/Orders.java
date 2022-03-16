@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author hongd
  */
 public class Orders {
+
     private int id;
     private String uname;
     private Date orderdate;
@@ -58,6 +59,6 @@ public class Orders {
     public void setTotal(int total) {
         this.total = total;
     }
-    
+
     
 }

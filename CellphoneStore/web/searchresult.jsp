@@ -42,10 +42,6 @@
                                             <h3>${p.name}</h3>
                                             <p class="i-price" >${p.price}</p>
                                         </div>
-                                        <div class="my-btn">
-                                            <button id="btn-1" onclick="buy(${p.id})">Thêm vào giỏ</button>
-                                            <button id="btn-2">Mua ngay</button>
-                                        </div>
                                     </div>
                                 </div>
                             </c:forEach>

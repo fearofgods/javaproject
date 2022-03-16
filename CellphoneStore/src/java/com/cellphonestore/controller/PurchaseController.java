@@ -7,6 +7,7 @@ package com.cellphonestore.controller;
 
 import com.cellphonestore.dao.ProductDAO;
 import com.cellphonestore.model.Orders;
+import com.cellphonestore.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -15,13 +16,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author hongd
  */
-@WebServlet(name = "adminhome", urlPatterns = {"/admin-home"})
-public class adminhome extends HttpServlet {
+@WebServlet(name = "PurchaseController", urlPatterns = {"/purchase"})
+public class PurchaseController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +42,10 @@ public class adminhome extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet adminhome</title>");            
+            out.println("<title>Servlet PurchaseController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet adminhome at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PurchaseController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,18 +64,20 @@ public class adminhome extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
-        List<Orders> list = dao.newOrder();
-        
-        int maxPrice = dao.maxOrder();
-        int totalFinance = dao.totalFinance();
-        String bestSell = dao.bestSell();
-//        System.out.println(list.size());
-        
-        request.setAttribute("maxPrice", maxPrice);
-        request.setAttribute("totalFinance", totalFinance);
-        request.setAttribute("bestSell", bestSell);
-        request.setAttribute("newOrder", list);
-        request.getRequestDispatcher("admin-home.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Users a = (Users) session.getAttribute("user");
+        try {
+            if (a == null) {
+                response.sendRedirect(request.getContextPath()+"/login");
+            } else {
+                List<Orders> list = dao.getOrderByUname(a.getUsername());
+                request.setAttribute("list", list);
+                request.getRequestDispatcher("purchase.jsp").forward(request, response);
+            }
+
+        } catch (IOException | ServletException e) {
+            System.out.println("Purchase_Error: " + e);
+        }
     }
 
     /**
