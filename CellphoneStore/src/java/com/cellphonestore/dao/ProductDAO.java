@@ -280,6 +280,10 @@ public class ProductDAO {
         return list;
     }
 
+//    public List<Products> searchFilter(){
+//    
+//    }
+    
     public List<Products> productByCid(int key) {
         List<Products> list = new ArrayList<>();
         String query = "Select * from Products where cid = ?";
@@ -740,9 +744,9 @@ public class ProductDAO {
 //        List<Products> pd = dao.paging(1);
 //        System.out.println(dao.getProductById("AP_13PRO"));
 //        System.out.println(st.size());
-        for (Products or : st) {
-            System.out.println(or.getName());
-        }
+//        for (Products or : st) {
+//            System.out.println(or.getName());
+//        }
 
 //        for (Products products : pd) {
 //            System.out.println(products.getName());

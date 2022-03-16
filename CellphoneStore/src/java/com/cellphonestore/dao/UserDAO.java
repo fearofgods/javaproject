@@ -9,6 +9,8 @@ import com.cellphonestore.model.Users;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServlet;
 /**
  *
@@ -57,9 +59,55 @@ public class UserDAO extends HttpServlet{
         return null;
     }
     
+    public List<Users> getAllUsers(){
+        String query = "Select * from Users";
+        List<Users> list = new ArrayList<>();
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                list.add(new Users(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+            }
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
+        }
+        return list;
+    }
+    
+    public Users changePass(String user, String newpass){
+        String query = "Update Users set [password] = ? where username = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, newpass);
+            ps.setString(2, user);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
+        }
+        return null;
+    }
+    
+    public void updateSt(String pass, String email, String phone, String role , String username){
+        String query = "Update Users set [password] = ?, email = ?, phone = ?, role = ? where username = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, pass);
+            ps.setString(2, email);
+            ps.setString(3, phone);
+            ps.setString(4, role);
+            ps.setString(5, username);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Error: "+e);    
+        }
+    }
+    
     public boolean findUserByUsername(String user){
         String query = "select * from Users\n"
-                + "where user = ?";
+                + "where username = ?";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -74,7 +122,21 @@ public class UserDAO extends HttpServlet{
         return false;
     }
     
-    
+    public String getRole(String username){
+        String query = "Select role from Users where username = ?";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
+        }
+        return null;
+    }
     
     public void updateProfile(Users a){
         String query = "update Users set firstname = ?, lastname = ?, email = ?, phone = ? ,address= ?, birthday = ? where username = ?";
@@ -93,4 +155,6 @@ public class UserDAO extends HttpServlet{
             System.out.println("Error: "+e);
         }
     }
+    
+    
 }

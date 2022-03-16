@@ -41,5 +41,5 @@
         <a href="<c:url value="/admin-home"/>"><i class="fa-solid fa-gauge"></i>&nbsp; Tổng quan</a>
         <a href="<c:url value="/admin-order"/>"><i class="fa-solid fa-file-invoice-dollar"></i>&nbsp; Đơn hàng</a>
         <a href="<c:url value="/admin-manage"/>"><i class="fa-solid fa-list-check"></i>&nbsp; Quản lí sản phẩm</a>
-        <a href="<c:url value="/admin-manage"/>"><i class="fa-solid fa-list-check"></i>&nbsp; Quản lí người dùng</a>
+        <a href="<c:url value="/admin-profilemanage"/>"><i class="fa-solid fa-list-check"></i>&nbsp; Quản lí người dùng</a>
     </div>
