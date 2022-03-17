@@ -49,7 +49,7 @@ and open the template in the editor.
                                         <td class="text-center">${o.uname}</td>
                                         <fmt:parseDate value="${o.orderdate}" pattern="yyyy-MM-dd" var="date"/>
                                         <td class="text-center"><fmt:formatDate value="${date}" pattern="dd/MM/yyyy" /></td>
-                                        <td class="text-center"><a href="<c:url value="/admin-orderdt?oid=${o.id}&action=view"/>">Xem chi tiết</a></td>
+                                        <td class="text-center"><a href="<c:url value="/admin-orderdt?oid=${o.id}&action=view&uname=${o.uname}"/>">Xem chi tiết</a></td>
                                     </tr>
                                 </c:forEach> 
 

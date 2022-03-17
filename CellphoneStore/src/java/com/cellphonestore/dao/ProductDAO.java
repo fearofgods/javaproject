@@ -262,7 +262,7 @@ public class ProductDAO {
 
     public List<Products> searchByPrice(int min_raw, int max_raw) {
         List<Products> list = new ArrayList<>();
-        String query = "Select * from Products where price between ? and ?";
+        String query = "Select * from Products where price between ? and ? order by price asc";
         try {
             int min = min_raw * 1000000;
             int max = max_raw * 1000000;
@@ -283,10 +283,9 @@ public class ProductDAO {
 //    public List<Products> searchFilter(){
 //    
 //    }
-    
     public List<Products> productByCid(int key) {
         List<Products> list = new ArrayList<>();
-        String query = "Select * from Products where cid = ?";
+        String query = "Select * from Products where cid = ? order by price asc";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -533,6 +532,42 @@ public class ProductDAO {
         return list;
     }
 
+    public List<Products> bestSellTop5() {
+        List<Products> list = new ArrayList<>();
+        String query = "Select top 5 p.id, p.pid, p.cid, p.name, p.image, p.price, p.description, sum(od.quantity) from OrderDetails as od, Products as p\n"
+                + "where od.pid = p.pid\n"
+                + "group by p.id, p.pid, p.cid, p.name, p.image, p.price, p.description, od.quantity\n"
+                + "order by sum(quantity) desc";
+
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Products(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getInt(8)));
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return list;
+    }
+    
+    public List<Orders> valueTop5(){
+        List<Orders> list = new ArrayList<>();
+        String query = "Select top 5 * from Orders order by total desc";
+        try {
+            conn = new com.cellphonestore.context.DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                list.add(new Orders(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return list;
+    }
+
     public List<Orders> newOrder() {
         String query = "select top 3 * from Orders order by id desc ";
         List<Orders> list = new ArrayList<>();
@@ -666,8 +701,8 @@ public class ProductDAO {
             System.out.println("Error: " + e);
         }
     }
-    
-    public void updateProduct(Products p){
+
+    public void updateProduct(Products p) {
         String query = "update Products set cid = ?, name = ? , image = ?, price = ?, description = ?, amount = ? where pid = ?";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
@@ -685,7 +720,7 @@ public class ProductDAO {
         }
     }
 
-    public void updateProductDetails(ProductDetails pd){
+    public void updateProductDetails(ProductDetails pd) {
         String query = "update ProductDetails set screen = ?, os = ?, rearcam = ?, frontcam = ?, soc = ?, ram = ?, sim = ?, battery = ? where pid = ?";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
@@ -704,8 +739,8 @@ public class ProductDAO {
             System.out.println("Error: " + e);
         }
     }
-    
-    public void updateColor(Color c){
+
+    public void updateColor(Color c) {
         String query = "update ColorDetails set color = ? where id = ? and pid = ?";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
@@ -718,8 +753,8 @@ public class ProductDAO {
             System.out.println("Error: " + e);
         }
     }
-    
-    public void updateStorage(Storage s){
+
+    public void updateStorage(Storage s) {
         String query = "update StorageDetails set storage = ? where id = ? and pid = ?";
         try {
             conn = new com.cellphonestore.context.DBContext().getConnection();
@@ -732,7 +767,7 @@ public class ProductDAO {
             System.out.println("Error: " + e);
         }
     }
-    
+
     public static void main(String[] args) {
         com.cellphonestore.dao.ProductDAO dao = new ProductDAO();
 //        Products a = dao.getProductById("OP_FIND3PRO");

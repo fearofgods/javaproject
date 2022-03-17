@@ -119,3 +119,87 @@ function changeStorage(sid,pid){
     window.location = "admin-updateproduct?action=update&type=storage&value="+storage+"&sid="+sid+"&pid="+pid;
   }
 }
+
+// Load chart
+$(document).ready(
+  function(){
+      $.ajax({
+          type : "get",
+          url : "/cellphone/loadchart",
+          dataType : "JSON",
+          success : function(result){
+              // alert(result);
+              google.charts.load('current',{
+                  'packages' : ['corechart']
+              });
+
+              google.charts.setOnLoadCallback(function(){
+                  drawChart(result);
+              });
+          }
+      });
+
+      function drawChart(result){
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'name');
+          data.addColumn('number', 'amount')
+          var dataArray = [];
+          $.each(result,function(i,obj){
+              dataArray.push([obj.name, obj.amount]);
+          });
+          data.addRows(dataArray);
+          var piechart_options = {
+              legend : 'center',
+              title : 'Top 5 sản phẩm bán chạy',
+              width : 500,
+              height : 500,
+          };
+          var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+          piechart.draw(data, piechart_options);
+      }
+  }
+
+  
+);
+
+$(document).ready(
+  function(){
+      $.ajax({
+          type : "get",
+          url : "/cellphone/loadcharttop5",
+          dataType : "JSON",
+          success : function(result){
+              // alert(result);
+              google.charts.load('current',{
+                  'packages' : ['corechart']
+              });
+
+              google.charts.setOnLoadCallback(function(){
+                  drawChart(result);
+              });
+          }
+      });
+
+      function drawChart(result){
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'uname');
+          data.addColumn('number', 'total')
+          var dataArray = [];
+          $.each(result,function(i,obj){
+              dataArray.push([obj.uname, obj.total]);
+          });
+          data.addRows(dataArray);
+          var piechart_options = {
+              legend : 'center',
+              title : 'Top 5 đơn hàng có giá trị cao nhất',
+              width : 500,
+              height : 500,
+          };
+          var piechart = new google.visualization.PieChart(document.getElementById('piechart_div2'));
+          piechart.draw(data, piechart_options);
+      }
+  }
+
+  
+);
+

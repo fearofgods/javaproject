@@ -30,29 +30,11 @@ and open the template in the editor.
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="my-modal">
-                            <div class="inside-modal">
-                                <p class="modal-title">Đơn hàng có giá trị cao nhất</p>
-                                <p class="modal-info">${maxPrice}</p>
-                            </div>
-                        </div>
+                    <div class="col-md-6 content chart-wrapper">
+                        <div id="piechart_div" class="chart"></div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="my-modal">
-                            <div class="inside-modal">
-                                <p class="modal-title">Sản phẩm được mua nhiều nhất</p>
-                                <p class="modal-info">${bestSell}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="my-modal">
-                            <div class="inside-modal">
-                                <p class="modal-title">Tổng doanh thu</p>
-                                <p class="modal-info">${totalFinance}</p>
-                            </div>
-                        </div>
+                    <div class="col-md-6 content chart-wrapper">
+                        <div id="piechart_div2" class="chart"></div>
                     </div>
                 </div>
 
@@ -87,6 +69,7 @@ and open the template in the editor.
 
         <jsp:include page="common/script.jsp"/>
         <!-- My script -->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="js/admin.js"></script>
     </body>
 
