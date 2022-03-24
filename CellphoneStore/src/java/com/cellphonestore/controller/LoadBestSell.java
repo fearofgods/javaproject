@@ -51,7 +51,7 @@ public class LoadBestSell extends HttpServlet {
 "                            </div>\n" +
 "                            <div class=\"item-top-title\">\n" +
 "                                <h2>" + products.getName() + "</h2>\n" +
-"                                <p>"+ price +"</p>\n" +
+"                                <p>"+ price +" ₫</p>\n" +
 "                            </div>\n" +
 "                        </div>\n" +
 "                    </div>");

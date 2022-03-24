@@ -27,7 +27,6 @@
                         <a href="#">Xin chào, ${sessionScope.user.lastname}</a>
                         <div class="dropdown-content">
                             <a href="<c:url value="/"/>">Về trang chủ</a>
-                            <a href="<c:url value="/profile"/>">Thông tin tài khoản</a>
                             <a href="<c:url value="/logout"/>">Đăng xuất</a>
                         </div>
                     </div>

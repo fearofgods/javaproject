@@ -73,11 +73,9 @@ and open the template in the editor.
                                             </table>
 
                                             <div class="payment">
-                                                <a href="<c:url value="
-                                                    /admin-orderdt?oid=${list.get(0).oid}&action=cf" />"><input
+                                                <a href="<c:url value="/admin-orderdt?oid=${list.get(0).oid}&action=cf&uname=${user.username}" />"><input
                                                     type="button" value="Xác nhận"></a>
-                                                <a href="<c:url value="
-                                                    /admin-orderdt?oid=${list.get(0).oid}&action=cl" />"><input
+                                                <a href="<c:url value="/admin-orderdt?oid=${list.get(0).oid}&action=cl&uname=${user.username}" />"><input
                                                     type="button" value="Từ chối"></a>
                                             </div>
                                         </div>

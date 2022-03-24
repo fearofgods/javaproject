@@ -1,6 +1,3 @@
-document.getElementById('submit').onclick = function(){
-    console.log("abc")
-}
 
 var totalPrice = 0;
 
